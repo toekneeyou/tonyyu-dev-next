@@ -1,14 +1,10 @@
 import { classNames } from "./lib/utils";
+import Hero from "./ui/features/Hero";
 
 export default function Home() {
   return (
-    <main
-      className={classNames(
-        "h-[200%] first-letter:max-w-[var(--app-max-width)] mx-auto",
-        "lg:space-y-[10rem]"
-      )}
-    >
-      App
+    <main className={classNames("")}>
+      <Hero />
     </main>
   );
 }
