@@ -13,7 +13,7 @@ export default function Header({}: HeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full p-4 flex justify-between items-center bg-app-black">
+    <header className="z-50 fixed top-0 left-0 w-full p-4 flex justify-between items-center bg-app-black">
       <h2
         className={classNames(
           josefin.className,
