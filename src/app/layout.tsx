@@ -1,9 +1,13 @@
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
-
-import "./globals.css";
 import Header from "./ui/features/Header";
 import Footer from "./ui/features/Footer";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tony Yu - Frontend Developer",
