@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
 
 import "./globals.css";
+import Header from "./ui/features/Header";
+import Footer from "./ui/features/Footer";
 
 export const metadata: Metadata = {
   title: "Tony Yu - Frontend Developer",
@@ -18,6 +20,9 @@ export const metadata: Metadata = {
     "react",
     "full stack",
   ],
+  icons: {
+    icon: "https://tony-is-looking-for-a-job.s3.us-east.cloud-object-storage.appdomain.cloud/favicon.png",
+  },
   openGraph: {
     title: "Tony Yu - Frontend Developer",
     siteName: "Tony Yu - Frontend Developer",
@@ -43,7 +48,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body
+        className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll`}
+      >
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
