@@ -1,9 +1,13 @@
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
-
-import "./globals.css";
 import Header from "./ui/features/Header";
 import Footer from "./ui/features/Footer";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tony Yu - Frontend Developer",
@@ -49,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll`}
+        className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll overflow-x-hidden text-app-white bg-app-black`}
       >
         <Header />
         {children}

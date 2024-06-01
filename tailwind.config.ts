@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+export const turquoise = "#07EEE0";
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -29,7 +31,7 @@ const config: Config = {
       colors: {
         "app-black": "#13141b",
         "app-white": "#EEE",
-        turquoise: "#07EEE0",
+        turquoise,
         "light-gray": "#CCC",
         "dark-gray": "#333",
       },
