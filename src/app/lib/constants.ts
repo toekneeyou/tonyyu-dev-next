@@ -1,9 +1,16 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export { turquoise } from "../../../tailwind.config";
 
-export const contacts = [
+export interface Contact {
+  label: string;
+  icon: IconProp;
+  handleClick: () => void;
+}
+
+export const contacts: Contact[] = [
   {
     label: "LinkedIn",
     icon: faLinkedin,

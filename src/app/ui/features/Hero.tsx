@@ -5,10 +5,11 @@ import { josefin } from "../fonts";
 import H2 from "../components/H2";
 import { contacts } from "@/app/lib/constants";
 import IconButton from "../components/IconButton";
+import { HERO } from "@/app/lib/id";
 
 export default function Hero() {
   return (
-    <header className="h-svh pt-16 px-8 centered flex-col">
+    <header id={HERO} className="h-svh pt-16 px-8 centered flex-col">
       <h1
         className={classNames(
           josefin.className,
