@@ -29,14 +29,9 @@ const config: Config = {
       colors: {
         "app-black": "#13141b",
         "app-white": "#EEE",
-        pink: "#ea7bfe",
-        green: "#5bdd66",
-      },
-      boxShadow: {
-        "pink-glow": "0px 0px 10px var(--pink)",
-      },
-      dropShadow: {
-        "pink-glow": "0px 0px 5px var(--pink)",
+        turquoise: "#07EEE0",
+        "light-gray": "#CCC",
+        "dark-gray": "#333",
       },
       fontSize: {
         "1rem": "1rem",
