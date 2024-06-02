@@ -52,7 +52,7 @@ export default function AboutMe() {
       </p>
       <div className="centered">
         <Link onClick={downloadResume}>
-          <span className="font-bold mr-1">download resume</span>
+          <span className="font-bold mr-2">download resume</span>
           <FontAwesomeIcon icon={faDownload} />
         </Link>
       </div>
