@@ -20,6 +20,8 @@ import reduxLogo from "../../../public/logos/redux-logo.svg";
 import postmanLogo from "../../../public/logos/postman-logo.svg";
 import tailwindLogo from "../../../public/logos/tailwind-logo.svg";
 import nextLogo from "../../../public/logos/next-logo.svg";
+import abbyBalanceScreen from "../../../public/images/abby-balance-screen.jpg";
+import abbyTransactionScreen from "../../../public/images/abby-transaction-screen.jpg";
 
 // CSS variables
 export { turquoise } from "../../../tailwind.config";
@@ -106,3 +108,23 @@ export const skills: SkillDetail[] = [
     ],
   },
 ];
+
+// ABBY Videos
+export interface AbbyVideoType {
+  label: "balances & trends" | "transactions";
+  src: string;
+  poster: string;
+  index: number;
+}
+export const abbyVideos: AbbyVideoType[] = [
+  {
+    label: "balances & trends",
+    src: "https://tony-is-looking-for-a-job.s3.us-east.cloud-object-storage.appdomain.cloud/abby-balance-video.mp4",
+    poster: abbyBalanceScreen.src,
+  },
+  {
+    label: "transactions",
+    src: "https://tony-is-looking-for-a-job.s3.us-east.cloud-object-storage.appdomain.cloud/abby-transaction-video.mp4",
+    poster: abbyTransactionScreen.src,
+  },
+].map((v, i) => ({ ...v, index: i } as AbbyVideoType));
