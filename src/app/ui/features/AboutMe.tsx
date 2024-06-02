@@ -2,7 +2,6 @@
 
 import { ABOUT_ME } from "@/app/lib/id";
 import { classNames } from "@/app/lib/utils";
-import Image from "next/image";
 import { josefin } from "../fonts";
 import Link from "../components/Link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -46,13 +45,13 @@ export default function AboutMe() {
       </div>
 
       <p className="mx-4 leading-6 font-medium">
-        Hello! I'm Tony, a frontend developer based in Los Angeles, CA. I've
+        Hello! I&apos;m Tony, a frontend developer based in Los Angeles, CA. I&apos;ve
         been in this field for over 4 years, and I love building engaging,
         intuitive, and beautiful user interfaces.
       </p>
       <div className="centered">
         <Link onClick={downloadResume}>
-          <span className="font-bold mr-1">download resume</span>
+          <span className="font-bold mr-2">download resume</span>
           <FontAwesomeIcon icon={faDownload} />
         </Link>
       </div>
