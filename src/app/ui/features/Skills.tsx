@@ -20,9 +20,9 @@ export default function Skills() {
       <p className="mx-4 leading-6 font-medium">
         I focus on creating user interfaces with React and the extensive
         JavaScript ecosystem. Though my expertise is mainly in frontend
-        development, I've been involved in different phases of the development
-        cycle and I'm always looking to expand my knowledge. Here are some of
-        the recent tools I've used.
+        development, I&apos;ve been involved in different phases of the development
+        cycle and I&apos;m always looking to expand my knowledge. Here are some of
+        the recent tools I&apos;ve used.
       </p>
       <div className="centered">
         <Link href="https://github.com/toekneeyou" target="_blank">

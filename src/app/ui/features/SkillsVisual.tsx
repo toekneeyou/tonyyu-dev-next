@@ -5,8 +5,7 @@ import { classNames } from "@/app/lib/utils";
 import Image from "next/image";
 import { ForwardedRef, forwardRef, useEffect, useRef } from "react";
 
-type SkillsVisualProps = {};
-export default function SkillsVisual({}: SkillsVisualProps) {
+export default function SkillsVisual() {
   const frontendRef = useRef<HTMLLIElement>(null);
   const backendRef = useRef<HTMLLIElement>(null);
   const designRef = useRef<HTMLLIElement>(null);
@@ -146,3 +145,5 @@ const SkillsVisualItem = forwardRef(function (
     </li>
   );
 });
+
+SkillsVisualItem.displayName = "SkillsVisualItem";
