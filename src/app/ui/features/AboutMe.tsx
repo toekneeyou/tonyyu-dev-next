@@ -12,8 +12,16 @@ import nielsenLogo from "../../../../public/logos/nielsen-logo.svg";
 import tiltLogo from "../../../../public/logos/tilt-logo.svg";
 import lewagonLogo from "../../../../public/logos/lewagon-logo.jpg";
 import uclaLogo from "../../../../public/logos/ucla-logo.webp";
+import tony1080 from "../../../../public/images/tony-iceland-1080x1350.jpg";
+import tony2160 from "../../../../public/images/tony-iceland-2160x2699.jpg";
+import { mdvp } from "@/app/lib/constants";
 
 export default function AboutMe() {
+  const downloadResume = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.open(process.env.NEXT_PUBLIC_RESUME_URL);
+  };
+
   return (
     <section id={ABOUT_ME} className="py-12 space-y-12">
       <h1
@@ -25,12 +33,15 @@ export default function AboutMe() {
         ABOUT ME
       </h1>
       <div className="px-4">
-        <Image
+        <img
           className="rounded-3xl"
-          src="https://tony-is-looking-for-a-job.s3.us-east.cloud-object-storage.appdomain.cloud/tony-iceland.jpg"
+          srcSet={`
+        ${tony1080.src} 1080w,
+        ${tony2160.src} 2160w
+        `}
+          sizes={`(min-width: ${mdvp}px) 2160px, 100vw`}
+          src={tony2160.src}
           alt="Author wearing a redjacket standing in front of a snow-capped mountain in Iceland."
-          width={1000}
-          height={1250}
         />
       </div>
 
@@ -40,7 +51,7 @@ export default function AboutMe() {
         intuitive, and beautiful user interfaces.
       </p>
       <div className="centered">
-        <Link>
+        <Link onClick={downloadResume}>
           <span className="font-bold mr-1">download resume</span>
           <FontAwesomeIcon icon={faDownload} />
         </Link>
