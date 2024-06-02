@@ -1,23 +1,15 @@
 import { PROJECTS } from "@/app/lib/id";
-import { classNames } from "@/app/lib/utils";
-import { josefin } from "../fonts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "../components/Link";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import H2 from "../components/H2";
 import AbbyVideos from "./AbbyVideos";
+import H1 from "../components/H1";
 
 export default function Projects() {
   return (
     <section id={PROJECTS} className="py-12 space-y-12">
-      <h1
-        className={classNames(
-          josefin.className,
-          "font-bold text-2xl text-center"
-        )}
-      >
-        PROJECTS
-      </h1>
+      <H1>PROJECTS</H1>
 
       <div className="centered">
         <H2>spotlight: ABBY</H2>
