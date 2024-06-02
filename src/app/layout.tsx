@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
 import Header from "./ui/features/Header";
 import Footer from "./ui/features/Footer";
+import SectionContextProvider from "./ui/contexts/SectionContext";
+import ViewportContextProvider from "./ui/contexts/ViewportContext";
 
 import "./globals.css";
 
@@ -52,13 +54,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll overflow-x-hidden text-app-white bg-app-black`}
-      >
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <SectionContextProvider>
+        <ViewportContextProvider>
+          <body
+            className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll overflow-x-hidden text-app-white bg-app-black`}
+          >
+            <Header />
+            {children}
+            <Footer />
+          </body>
+        </ViewportContextProvider>
+      </SectionContextProvider>
     </html>
   );
 }
