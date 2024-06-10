@@ -2,6 +2,7 @@
 
 import { SectionDetail, sections } from "@/app/lib/constants";
 import { ABOUT_ME, HERO } from "@/app/lib/id";
+import { usePathname } from "next/navigation";
 import {
   ReactNode,
   createContext,
@@ -26,12 +27,15 @@ export default function SectionContextProvider({
   const [currentSection, setCurrentSection] = useState<SectionDetail>(
     sections[0]
   );
+  const pathname = usePathname();
 
   const contextValue: SectionContextState = {
     currentSection,
   };
 
   useEffect(() => {
+    const isBlog = pathname.match(/blog/);
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -48,14 +52,15 @@ export default function SectionContextProvider({
       },
       { threshold: 0.5 }
     );
-
-    observer.observe(document.getElementById(HERO)!);
-    observer.observe(document.getElementById(ABOUT_ME)!);
+    if (!isBlog) {
+      observer.observe(document.getElementById(HERO)!);
+      observer.observe(document.getElementById(ABOUT_ME)!);
+    }
 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <SectionContext.Provider value={contextValue}>

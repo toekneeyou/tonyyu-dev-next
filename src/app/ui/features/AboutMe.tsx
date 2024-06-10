@@ -1,9 +1,7 @@
 "use client";
 
 import { ABOUT_ME } from "@/app/lib/id";
-import { classNames } from "@/app/lib/utils";
-import { josefin } from "../fonts";
-import Link from "../components/Link";
+import Link from "../components/StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import AboutMeVisualItem from "./AboutMeVisual";
@@ -14,6 +12,7 @@ import uclaLogo from "../../../../public/logos/ucla-logo.webp";
 import tony1080 from "../../../../public/images/tony-iceland-1080x1350.jpg";
 import tony2160 from "../../../../public/images/tony-iceland-2160x2699.jpg";
 import { mdvp } from "@/app/lib/constants";
+import H1 from "../components/H1";
 
 export default function AboutMe() {
   const downloadResume = (e: React.MouseEvent) => {
@@ -23,14 +22,7 @@ export default function AboutMe() {
 
   return (
     <section id={ABOUT_ME} className="py-12 space-y-12">
-      <h1
-        className={classNames(
-          josefin.className,
-          "font-bold text-2xl text-center"
-        )}
-      >
-        ABOUT ME
-      </h1>
+      <H1>ABOUT ME</H1>
       <div className="px-4">
         <img
           className="rounded-3xl"
@@ -45,9 +37,9 @@ export default function AboutMe() {
       </div>
 
       <p className="mx-4 leading-6 font-medium">
-        Hello! I&apos;m Tony, a frontend developer based in Los Angeles, CA. I&apos;ve
-        been in this field for over 4 years, and I love building engaging,
-        intuitive, and beautiful user interfaces.
+        Hello! I&apos;m Tony, a frontend developer based in Los Angeles, CA.
+        I&apos;ve been in this field for over 4 years, and I love building
+        engaging, intuitive, and beautiful user interfaces.
       </p>
       <div className="centered">
         <Link onClick={downloadResume}>

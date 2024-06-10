@@ -3,6 +3,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 import type { Metadata } from "next";
+
 import { inter } from "./ui/fonts";
 import Header from "./ui/features/Header";
 import Footer from "./ui/features/Footer";
