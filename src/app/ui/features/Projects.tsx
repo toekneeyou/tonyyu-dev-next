@@ -1,6 +1,6 @@
 import { PROJECTS } from "@/app/lib/id";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "../components/Link";
+import Link from "../components/StyledLink";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import H2 from "../components/H2";
 import AbbyVideos from "./AbbyVideos";

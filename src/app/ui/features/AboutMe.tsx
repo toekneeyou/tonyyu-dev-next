@@ -1,7 +1,7 @@
 "use client";
 
 import { ABOUT_ME } from "@/app/lib/id";
-import Link from "../components/Link";
+import Link from "../components/StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import AboutMeVisualItem from "./AboutMeVisual";

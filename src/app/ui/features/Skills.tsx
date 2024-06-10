@@ -1,5 +1,5 @@
 import { SKILLS } from "@/app/lib/id";
-import Link from "../components/Link";
+import Link from "../components/StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import SkillsVisual from "./SkillsVisual";
