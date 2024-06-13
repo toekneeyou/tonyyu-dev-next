@@ -1,15 +1,7 @@
+import { Post } from "../types/post";
+
 const WORDPRESS_API_URL =
   "https://public-api.wordpress.com/wp/v2/sites/tonyyucms.wordpress.com";
-
-export interface Post {
-  id: string;
-  date: string;
-  slug: string;
-  title: string;
-  content: string;
-  classList: string[];
-  categories: string[];
-}
 
 const formatPost = (unformattedPost: any) => {
   const categories: string[] = unformattedPost.class_list
