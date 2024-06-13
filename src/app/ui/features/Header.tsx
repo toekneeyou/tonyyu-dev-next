@@ -32,13 +32,13 @@ export default function Header({}: HeaderProps) {
       <h2
         className={classNames(
           josefin.className,
-          "text-xl font-bold leading-none translate-y-[2px]"
+          "text-2xl font-bold leading-none translate-y-[2px]"
         )}
       >
         <Link href="/">TONY YU</Link>
       </h2>
       <div>
-        <IconButton icon={faBars} onClick={handleMenu} />
+        <IconButton aria-label="Open Menu" icon={faBars} onClick={handleMenu} />
       </div>
     </header>
   );
