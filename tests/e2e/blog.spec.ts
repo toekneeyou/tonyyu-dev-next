@@ -5,11 +5,9 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Blog Page", () => {
-  //   test("has title", async ({ page }) => {
-  //     await expect(page).toHaveTitle(/Tony Yu - Blog/);
-  //   });
-  //   test("blog links are valid", async ({ page }) => {});
   //   test("can search for blog posts", async ({ page }) => {});
   //   test("can filter blog posts", async ({ page }) => {});
   //   test("can paginate blog posts", async ({ page }) => {});
 });
+
+test.describe("Post Page", () => {});
