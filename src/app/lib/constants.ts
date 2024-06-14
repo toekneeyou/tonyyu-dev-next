@@ -1,7 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { ABOUT_ME, HERO } from "./id";
+import { ABOUT_ME, HERO, PROJECTS, SKILLS } from "./id";
 import htmlLogo from "../../../public/logos/html-logo.svg";
 import cssLogo from "../../../public/logos/css-logo.svg";
 import jsLogo from "../../../public/logos/js-logo.svg";
@@ -67,6 +67,8 @@ export interface SectionDetail {
 export const sections: SectionDetail[] = [
   { section: "hero", id: HERO },
   { section: "about me", id: ABOUT_ME },
+  { section: "skills", id: SKILLS },
+  { section: "projects", id: PROJECTS },
 ];
 
 // Skills

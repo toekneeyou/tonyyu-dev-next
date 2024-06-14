@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
   const posts = (await getPosts(5)) ?? [];
-  
+
   return (
     <main className="py-28 space-y-8 px-4">
       <div className="centered">
@@ -32,7 +32,7 @@ export default async function Blog() {
           icon={faSearch}
           containerClass="flex-grow"
         />
-        <IconButton icon={faSliders} />
+        <IconButton aria-label="Open Filters" icon={faSliders} />
       </div>
       <BlogList posts={posts} />
     </main>
