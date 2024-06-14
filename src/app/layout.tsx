@@ -4,11 +4,10 @@ config.autoAddCss = false;
 
 import type { Metadata } from "next";
 
-import { inter } from "./ui/fonts";
-import Header from "./ui/features/Header";
-import Footer from "./ui/features/Footer";
-import SectionContextProvider from "./ui/contexts/SectionContext";
 import ViewportContextProvider from "./ui/contexts/ViewportContext";
+import SectionContextProvider from "./ui/contexts/SectionContext";
+import SideMenuContextProvider from "./ui/contexts/SideMenuContext";
+import Body from "./ui/features/Body";
 
 import "./globals.css";
 
@@ -55,17 +54,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <SectionContextProvider>
-        <ViewportContextProvider>
-          <body
-            className={`${inter.className} antialiased m-0 h-svh overflow-y-scroll overflow-x-hidden text-app-white bg-app-black`}
-          >
-            <Header />
-            {children}
-            <Footer />
-          </body>
-        </ViewportContextProvider>
-      </SectionContextProvider>
+      <SideMenuContextProvider>
+        <SectionContextProvider>
+          <ViewportContextProvider>
+            <Body>{children}</Body>
+          </ViewportContextProvider>
+        </SectionContextProvider>
+      </SideMenuContextProvider>
     </html>
   );
 }
