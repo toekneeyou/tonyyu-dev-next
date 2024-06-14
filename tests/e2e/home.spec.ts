@@ -5,25 +5,18 @@ test.beforeEach(async ({ page }) => {
 });
 
 test.describe("Home Page", () => {
-  // test("has title", async ({ page }) => {
-  //   await expect(page).toHaveTitle(/Tony Yu - Frontend Developer/);
-  // });
-
-  // test("links in hero are valid", async ({ page }) => {});
-
   test("can download resume", async ({ page }) => {
+    // Wait for download before clicking
     const downloadPromise = page.waitForEvent("download");
+    // Click on resume anchor element
     await page.locator("css=.resume-link").click();
+    // Check for failure
     const resumeDownload = await downloadPromise;
     const isFailed = await resumeDownload.failure();
     expect(isFailed).toBeNull();
   });
-
   // test("can visit github from skills section", async ({ page }) => {});
-
   // test("abby links are valid", async ({ page }) => {});
-
   // test("blog links are valid", async ({ page }) => {});
-
   // test("can open and close side menu", async ({ page }) => {});
 });
