@@ -44,7 +44,7 @@ export const contacts: Contact[] = [
   {
     label: "LinkedIn",
     icon: faLinkedin,
-    handleClick: () => window.open("https://linkedin.com/in/tonyyu1129"),
+    handleClick: () => window.open("https://linkedin.com/in/tonyyu1129/"),
   },
   {
     label: "Github",
