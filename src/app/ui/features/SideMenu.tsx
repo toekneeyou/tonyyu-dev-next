@@ -22,7 +22,11 @@ export default function SideMenu() {
               const el = document.getElementById(s.id)!;
               el.scrollIntoView({ behavior: "smooth" });
             };
-            return <li onClick={handleClick}>{s.section}</li>;
+            return (
+              <li key={s.section} onClick={handleClick}>
+                {s.section}
+              </li>
+            );
           })}
         </ul>
       </nav>
