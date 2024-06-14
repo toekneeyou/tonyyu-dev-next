@@ -1,7 +1,7 @@
-import { classNames } from "@/app/lib/utils";
-import { Post } from "@/app/lib/wordpressApi";
 import { decode } from "html-entities";
 import Link from "next/link";
+import { Post } from "@/app/types/post";
+import { classNames } from "@/app/lib/utils";
 
 interface BlogListProps {
   posts: Post[];
