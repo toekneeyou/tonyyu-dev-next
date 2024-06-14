@@ -15,9 +15,11 @@ import { mdvp } from "@/app/lib/constants";
 import H1 from "../components/H1";
 
 export default function AboutMe() {
+  const resumeLink = process.env.NEXT_PUBLIC_RESUME_URL;
+
   const downloadResume = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(process.env.NEXT_PUBLIC_RESUME_URL);
+    window.open(resumeLink);
   };
 
   return (
@@ -42,7 +44,11 @@ export default function AboutMe() {
         engaging, intuitive, and beautiful user interfaces.
       </p>
       <div className="centered">
-        <Link onClick={downloadResume}>
+        <Link
+          onClick={downloadResume}
+          href={resumeLink}
+          className="resume-link"
+        >
           <span className="font-bold mr-2">download resume</span>
           <FontAwesomeIcon icon={faDownload} />
         </Link>

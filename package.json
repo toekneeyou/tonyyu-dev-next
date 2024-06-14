@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "npx playwright test",
+    "show-report": "npx playwright show-report"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -20,6 +22,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

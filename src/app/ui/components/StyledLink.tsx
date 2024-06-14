@@ -1,3 +1,4 @@
+import { classNames } from "@/app/lib/utils";
 import Link, { LinkProps } from "next/link";
 import { AnchorHTMLAttributes, ReactNode } from "react";
 
@@ -18,7 +19,12 @@ export default function StyledLink({
       {isNextLink ? (
         <Link {...nextLinkProps}>{children}</Link>
       ) : (
-        <a {...linkAttributes} className="px-2">
+        <a
+          {...linkAttributes}
+          className={classNames("px-2", {
+            [linkAttributes.className ?? ""]: !!linkAttributes.className,
+          })}
+        >
           {children}
         </a>
       )}
