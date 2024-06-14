@@ -9,5 +9,3 @@ test.describe("Blog Page", () => {
   //   test("can filter blog posts", async ({ page }) => {});
   //   test("can paginate blog posts", async ({ page }) => {});
 });
-
-test.describe("Post Page", () => {});
