@@ -32,8 +32,9 @@ const config: Config = {
         "app-black": "#13141b",
         "app-white": "#EEE",
         turquoise,
-        "light-gray": "#CCC",
-        "dark-gray": "#333",
+        "app-fog": "#CCC",
+        "app-gray": "#333",
+        "app-red": "#bb2022",
       },
       fontSize: {
         "1rem": "1rem",
