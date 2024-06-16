@@ -10,7 +10,7 @@ export default function Footer({}: FooterProps) {
   return (
     <footer
       className={classNames(
-        "py-20 px-4 centered flex-col border-t-4 border-dark-gray"
+        "py-20 px-4 centered flex-col border-t-4 border-app-gray"
       )}
     >
       <ul className="flex space-x-4 mb-8">
@@ -26,7 +26,7 @@ export default function Footer({}: FooterProps) {
           );
         })}
       </ul>
-      <p className="text-light-gray">
+      <p className="text-app-fog">
         &copy; 2024 Tony Yu. All rights reserved.
       </p>
     </footer>

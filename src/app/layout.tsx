@@ -3,7 +3,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 import type { Metadata } from "next";
-
 import ViewportContextProvider from "./ui/contexts/ViewportContext";
 import SectionContextProvider from "./ui/contexts/SectionContext";
 import SideMenuContextProvider from "./ui/contexts/SideMenuContext";
