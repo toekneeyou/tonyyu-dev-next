@@ -24,7 +24,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
             <Link href={href}>
               <h3 className="font-bold">{title}</h3>
-              <p className="capitalize text-light-gray text-[12px]">
+              <p className="capitalize text-app-fog text-[12px]">
                 {dateString} - {p.categories.join(", ")}
               </p>
             </Link>

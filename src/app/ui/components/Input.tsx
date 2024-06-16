@@ -29,7 +29,7 @@ export default function Input({
   return (
     <div
       className={classNames(
-        "h-14 flex items-center rounded-full border-dark-gray border-2 px-6 space-x-3",
+        "h-14 flex items-center rounded-full border-app-gray border-2 px-6 space-x-3",
         { [containerClass]: !!containerClass },
         { "border-app-white": isFocused }
       )}

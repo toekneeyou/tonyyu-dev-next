@@ -10,9 +10,9 @@ export default function SideMenu() {
   return (
     <aside
       className={classNames(
-        "fixed top-16 left-0 right-0 bottom-0 bg-app-black z-50",
-        "transition-transform duration-300 translate-x-full",
-        { "translate-x-0": isSideMenuOpen }
+        "fixed top-16 left-0 right-0 bottom-0 bg-app-black z-50 transition-transform duration-300",
+        { "translate-x-0": isSideMenuOpen },
+        { "translate-x-full": !isSideMenuOpen }
       )}
     >
       <nav>
