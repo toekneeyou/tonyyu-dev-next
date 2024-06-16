@@ -63,7 +63,7 @@ export default function SideMenuContextProvider({
     const handleResize = (entries: ResizeObserverEntry[]) => {
       entries.forEach((e) => {
         if (
-          e.target.getBoundingClientRect().width > mdvp &&
+          e.target.getBoundingClientRect().width >= mdvp &&
           state.isSideMenuOpen
         ) {
           sideMenuAPI.setIsSideMenuOpen(false);
@@ -90,7 +90,7 @@ export default function SideMenuContextProvider({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [state.isSideMenuOpen]);
+  }, [state.isSideMenuOpen, sideMenuAPI]);
 
   return (
     <SideMenuStateContext.Provider value={state}>

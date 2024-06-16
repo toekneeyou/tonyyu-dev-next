@@ -35,7 +35,7 @@ export default function SectionContextProvider({
 
   useEffect(() => {
     const isBlog = pathname.match(/blog/);
-    
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
