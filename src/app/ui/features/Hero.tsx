@@ -137,7 +137,7 @@ function HeroPartOne({ isHalfway }: HeroPartOneProps) {
             "md:translate-y-[110%]": isHalfway,
           })}
         >
-          <H2>Hi, I'm a software engineer</H2>
+          <H2>Hi, I&apos;m a software engineer</H2>
         </div>
       </div>
 
