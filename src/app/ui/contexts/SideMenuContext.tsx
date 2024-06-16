@@ -59,7 +59,8 @@ export default function SideMenuContextProvider({
   }, []);
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver((entries) => {
+    // whenever viewport is too big, close sidemenu and disconnect resize observer
+    const handleResize = (entries: ResizeObserverEntry[]) => {
       entries.forEach((e) => {
         if (
           e.target.getBoundingClientRect().width > mdvp &&
@@ -69,8 +70,21 @@ export default function SideMenuContextProvider({
           resizeObserver.disconnect();
         }
       });
-    });
+    };
 
+    // handle body scroll here instead of using state in page.tsx to prevent unnecessary rerenders
+    const handleBodyScroll = () => {
+      if (state.isSideMenuOpen) {
+        document.body.classList.remove("overflow-y-scroll");
+        document.body.classList.add("overflow-y-hidden");
+      } else {
+        document.body.classList.remove("overflow-y-hidden");
+        document.body.classList.add("overflow-y-scroll");
+      }
+    };
+
+    handleBodyScroll();
+    const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(document.querySelector("body")!);
 
     return () => {
