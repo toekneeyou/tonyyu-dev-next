@@ -1,6 +1,6 @@
 "use client";
 
-import { mdvp } from "@/app/lib/constants";
+import { mdViewport } from "@/app/lib/constants";
 import {
   ReactNode,
   createContext,
@@ -63,7 +63,7 @@ export default function SideMenuContextProvider({
     const handleResize = (entries: ResizeObserverEntry[]) => {
       entries.forEach((e) => {
         if (
-          e.target.getBoundingClientRect().width >= mdvp &&
+          e.target.getBoundingClientRect().width >= mdViewport &&
           state.isSideMenuOpen
         ) {
           sideMenuAPI.setIsSideMenuOpen(false);
