@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { classNames } from "@/app/lib/utils";
 import { mdViewport } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
-import { useViewportContext } from "../../../contexts/ViewportContext";
+import { useViewportContext } from "@contexts/ViewportContext";
 import HeroTextPartOne from "./HeroTextPartOne";
 
 const HeroTextPartTwo = dynamic(() => import("./HeroTextPartTwo"));

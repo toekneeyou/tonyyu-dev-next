@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:3000/");
 });
 
-test.describe("home page", () => {
+test.describe("hero", () => {
   test("can download resume", async ({ page }) => {
     // Wait for download before clicking
     const downloadPromise = page.waitForEvent("download");
@@ -15,6 +15,8 @@ test.describe("home page", () => {
     const isFailed = await resumeDownload.failure();
     expect(isFailed).toBeNull();
   });
-  // test("can visit github from skills section", async ({ page }) => {});
-  // test("can open and close side menu", async ({ page }) => {});
+});
+
+test.describe("projects", () => {
+  test("can select project for display", () => {});
 });
