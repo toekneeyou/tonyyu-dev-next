@@ -7,25 +7,23 @@ import { classNames } from "@/app/lib/utils";
 import { josefin } from "../fonts";
 import IconButton from "../components/IconButton";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { useSectionContext } from "../contexts/SectionContext";
+
 import { useSideMenuAPI, useSideMenuState } from "../contexts/SideMenuContext";
+import { useViewportContext } from "../contexts/ViewportContext";
+import { mdViewport } from "@/app/lib/constants";
 
 interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
-  const { currentSection } = useSectionContext();
   const { isSideMenuOpen } = useSideMenuState();
   const { toggleSideMenu } = useSideMenuAPI();
+  const { w } = useViewportContext();
   const pathname = usePathname();
 
   return (
     <header
       className={classNames(
-        "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black transition-transform duration-300",
-        {
-          "translate-y-[-100%]":
-            currentSection.section === "hero" && !pathname.match(/blog/),
-        }
+        "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black transition-transform duration-300"
       )}
     >
       <h2
@@ -36,13 +34,24 @@ export default function Header({}: HeaderProps) {
       >
         <Link href="/">TONY YU</Link>
       </h2>
-      <div>
-        <IconButton
-          aria-label="Open Menu"
-          icon={isSideMenuOpen ? faClose : faBars}
-          onClick={toggleSideMenu}
-        />
-      </div>
+      {w !== undefined && w >= mdViewport && (
+        <ul>
+          <li>
+            <Link href="/blog" className="font-bold">
+              Blog
+            </Link>
+          </li>
+        </ul>
+      )}
+      {w !== undefined && w < mdViewport && (
+        <div>
+          <IconButton
+            aria-label="Open Menu"
+            icon={isSideMenuOpen ? faClose : faBars}
+            onClick={toggleSideMenu}
+          />
+        </div>
+      )}
     </header>
   );
 }
