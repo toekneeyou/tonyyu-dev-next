@@ -1,7 +1,7 @@
 import { classNames } from "./lib/utils";
-import LatestPosts from "./ui/features/LatestPosts";
-import HeroSection from "./ui/features/home/heroSection/HeroSection";
-import Projects from "./ui/features/home/projectsSection/ProjectsSection";
+import HeroSection from "@features/home/heroSection/HeroSection";
+import Projects from "@features/home/projectsSection/ProjectsSection";
+import LatestPosts from "@features/home/latestPostsSection/LatestPosts";
 
 export default function Home() {
   return (

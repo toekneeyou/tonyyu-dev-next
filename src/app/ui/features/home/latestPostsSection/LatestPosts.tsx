@@ -1,11 +1,12 @@
 import { LATEST_POSTS } from "@/app/lib/id";
-import H1 from "../components/H1";
-import StyledLink from "../components/StyledLink";
+
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getPosts } from "@/app/lib/wordpressApi";
-import BlogList from "./BlogList";
+import BlogList from "../../PostsList";
 import { classNames } from "@/app/lib/utils";
+import H1 from "@/app/ui/components/H1";
+import StyledLink from "@/app/ui/components/StyledLink";
 
 export default async function LatestPosts() {
   const posts = (await getPosts(3)) ?? [];
