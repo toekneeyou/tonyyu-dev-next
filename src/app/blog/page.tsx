@@ -5,7 +5,7 @@ import Input from "../ui/components/Input";
 import { faSearch, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { getPosts } from "../lib/wordpressApi";
 import IconButton from "../ui/components/IconButton";
-import BlogList from "../ui/features/BlogList";
+import BlogList from "../ui/features/PostsList";
 
 export const metadata: Metadata = {
   title: "Tony Yu - Blog",

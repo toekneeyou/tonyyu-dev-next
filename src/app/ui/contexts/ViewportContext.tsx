@@ -9,8 +9,8 @@ import {
 } from "react";
 
 interface ViewportContextState {
-  w: number;
-  h: number;
+  w: number | undefined;
+  h: number | undefined;
 }
 
 const ViewportContext = createContext<ViewportContextState | null>(null);
@@ -23,8 +23,8 @@ export default function ViewportContextProvider({
   children,
 }: ViewportContextProviderProps) {
   const [dimensions, setDimensions] = useState<ViewportContextState>({
-    w: 0,
-    h: 0,
+    w: undefined,
+    h: undefined,
   });
 
   useEffect(() => {

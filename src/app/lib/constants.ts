@@ -1,37 +1,18 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { ABOUT_ME, HERO, PROJECTS, SKILLS } from "./id";
-import htmlLogo from "../../../public/logos/html-logo.svg";
-import cssLogo from "../../../public/logos/css-logo.svg";
-import jsLogo from "../../../public/logos/js-logo.svg";
-import tsLogo from "../../../public/logos/ts-logo.svg";
-import reactLogo from "../../../public/logos/react-logo.svg";
-import figmaLogo from "../../../public/logos/figma-logo.svg";
-import nodeLogo from "../../../public/logos/node-logo.svg";
-import expressLogo from "../../../public/logos/express-logo.svg";
-import illustratorLogo from "../../../public/logos/illustrator-logo.svg";
-import awsLogo from "../../../public/logos/aws-logo.svg";
-import sassLogo from "../../../public/logos/sass-logo.svg";
-import dockerLogo from "../../../public/logos/docker-logo.svg";
-import lightroomLogo from "../../../public/logos/lightroom-logo.svg";
-import photoshopLogo from "../../../public/logos/photoshop-logo.svg";
-import reduxLogo from "../../../public/logos/redux-logo.svg";
-import postmanLogo from "../../../public/logos/postman-logo.svg";
-import tailwindLogo from "../../../public/logos/tailwind-logo.svg";
-import nextLogo from "../../../public/logos/next-logo.svg";
+import { faEnvelope, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import abbyBalanceScreen from "../../../public/images/abby-balance-screen.jpg";
 import abbyTransactionScreen from "../../../public/images/abby-transaction-screen.jpg";
 
 // CSS variables
-export { turquoise } from "../../../tailwind.config";
+export { turquoise, black, gray, white, fog } from "../../../tailwind.config";
 
 // Viewport Sizes
-export const smvp = 640;
-export const mdvp = 768;
-export const lgvp = 1024;
-export const xlvp = 1280;
-export const xxlvp = 1536;
+export const smViewport = 640;
+export const mdViewport = 768;
+export const lgViewport = 1024;
+export const xlViewport = 1280;
+export const xxlViewport = 1536;
 
 // Contacts
 export interface Contact {
@@ -41,6 +22,11 @@ export interface Contact {
 }
 
 export const contacts: Contact[] = [
+  {
+    label: "Resume",
+    icon: faFileLines,
+    handleClick: () => window.open(process.env.NEXT_PUBLIC_RESUME_URL),
+  },
   {
     label: "LinkedIn",
     icon: faLinkedin,
@@ -54,60 +40,7 @@ export const contacts: Contact[] = [
   {
     label: "Email",
     icon: faEnvelope,
-    handleClick: () => window.open("mailto:tonyyu1129@gmail.com"),
-  },
-];
-
-// Section
-export type Section = "hero" | "about me" | "skills" | "projects";
-export interface SectionDetail {
-  section: Section;
-  id: string;
-}
-export const sections: SectionDetail[] = [
-  { section: "hero", id: HERO },
-  { section: "about me", id: ABOUT_ME },
-  { section: "skills", id: SKILLS },
-  { section: "projects", id: PROJECTS },
-];
-
-// Skills
-export type Skill = "design" | "frontend" | "backend";
-export type Tool = { name: string; icon: any };
-export type SkillDetail = { name: Skill; tools: Tool[] };
-export const skills: SkillDetail[] = [
-  {
-    name: "design",
-    tools: [
-      { name: "Figma", icon: figmaLogo },
-      { name: "Illustrator", icon: illustratorLogo },
-      { name: "Lightroom", icon: lightroomLogo },
-      { name: "Photoshop", icon: photoshopLogo },
-    ],
-  },
-  {
-    name: "frontend",
-    tools: [
-      { name: "React", icon: reactLogo },
-      { name: "Redux", icon: reduxLogo },
-      { name: "TypeScript", icon: tsLogo },
-      { name: "JavaScript", icon: jsLogo },
-      { name: "Tailwind", icon: tailwindLogo },
-      { name: "Sass", icon: sassLogo },
-      { name: "HTML", icon: htmlLogo },
-      { name: "CSS", icon: cssLogo },
-      { name: "Next.js", icon: nextLogo },
-    ],
-  },
-  {
-    name: "backend",
-    tools: [
-      { name: "Node.js", icon: nodeLogo },
-      { name: "Express.js", icon: expressLogo },
-      { name: "Postman", icon: postmanLogo },
-      { name: "AWS", icon: awsLogo },
-      { name: "Docker", icon: dockerLogo },
-    ],
+    handleClick: () => window.open("mailto:tonyyudev@gmail.com"),
   },
 ];
 

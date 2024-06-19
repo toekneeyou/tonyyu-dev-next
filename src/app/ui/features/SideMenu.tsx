@@ -2,7 +2,7 @@
 
 import { classNames } from "@/app/lib/utils";
 import { useSideMenuState } from "../contexts/SideMenuContext";
-import { sections } from "@/app/lib/constants";
+import Link from "next/link";
 
 export default function SideMenu() {
   const { isSideMenuOpen } = useSideMenuState();
@@ -17,17 +17,9 @@ export default function SideMenu() {
     >
       <nav>
         <ul>
-          {sections.map((s) => {
-            const handleClick = () => {
-              const el = document.getElementById(s.id)!;
-              el.scrollIntoView({ behavior: "smooth" });
-            };
-            return (
-              <li key={s.section} onClick={handleClick}>
-                {s.section}
-              </li>
-            );
-          })}
+          <li>
+            <Link href="/blog">Blog</Link>
+          </li>
         </ul>
       </nav>
     </aside>

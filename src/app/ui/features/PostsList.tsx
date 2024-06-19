@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Post } from "@/app/types/post";
 import { classNames } from "@/app/lib/utils";
 
-interface BlogListProps {
+interface PostsListProps {
   posts: Post[];
 }
 
-export default function BlogList({ posts }: BlogListProps) {
+export default function PostsList({ posts }: PostsListProps) {
   return (
     <ul className="px-4 space-y-9">
       {posts.map((p) => {
@@ -23,7 +23,7 @@ export default function BlogList({ posts }: BlogListProps) {
             />
 
             <Link href={href}>
-              <h3 className="font-bold">{title}</h3>
+              <h3 className="font-bold md:text-2xl">{title}</h3>
               <p className="capitalize text-app-fog text-[12px]">
                 {dateString} - {p.categories.join(", ")}
               </p>

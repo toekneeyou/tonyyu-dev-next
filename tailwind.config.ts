@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 
 export const turquoise = "#07EEE0";
+export const gray = "#333";
+export const fog = "#CCC";
+export const black = "#13141b";
+export const white = "#EEE";
 
 const config: Config = {
   content: [
@@ -13,6 +17,12 @@ const config: Config = {
       animation: {
         "bring-to-front": "bring-to-front 750ms ease-in-out forwards",
         "move-to-back": "move-to-back 750ms ease-in-out forwards",
+      },
+      backgroundImage: {
+        abby: `url("/images/abby-bg.jpg")`,
+        "abby-gradient":
+          "linear-gradient(145.47deg, #604956 19.56%, #3D2D36 109.08%)",
+        tonyyu: `url("/images/tonyyu-bg.jpg")`,
       },
       keyframes: {
         "bring-to-front": {
@@ -29,12 +39,11 @@ const config: Config = {
         },
       },
       colors: {
-        "app-black": "#13141b",
-        "app-white": "#EEE",
+        "app-black": black,
+        "app-white": white,
         turquoise,
-        "app-fog": "#CCC",
-        "app-gray": "#333",
-        "app-red": "#bb2022",
+        "app-fog": fog,
+        "app-gray": gray,
       },
       fontSize: {
         "1rem": "1rem",
