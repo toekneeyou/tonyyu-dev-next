@@ -1,18 +1,14 @@
 import { classNames } from "./lib/utils";
-import AboutMe from "./ui/features/AboutMe";
-import BlogSection from "./ui/features/BlogSection";
-import Hero from "./ui/features/Hero";
-import Projects from "./ui/features/Projects";
-import Skills from "./ui/features/Skills";
+import LatestPosts from "./ui/features/LatestPosts";
+import HeroSection from "./ui/features/home/heroSection/HeroSection";
+import Projects from "./ui/features/home/projectsSection/ProjectsSection";
 
 export default function Home() {
   return (
-    <main className={classNames("mb-16")}>
-      <Hero />
-      <AboutMe />
-      <Skills />
+    <main className={classNames("mb-16", "md:mb-40")}>
+      <HeroSection />
       <Projects />
-      <BlogSection />
+      <LatestPosts />
     </main>
   );
 }
