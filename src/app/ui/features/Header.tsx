@@ -10,7 +10,7 @@ import { josefin } from "../fonts";
 import IconButton from "../components/IconButton";
 import { useSideMenuAPI, useSideMenuState } from "../contexts/SideMenuContext";
 import { useViewportContext } from "../contexts/ViewportContext";
-import { mdViewport } from "@/app/lib/constants";
+import { mdViewport, pathnames } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
 
 interface HeaderProps {}
@@ -54,24 +54,34 @@ export default function Header({}: HeaderProps) {
     <header
       ref={headerRef}
       className={classNames(
-        "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black transition-transform duration-300"
+        [
+          "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black",
+          "transition-transform duration-300",
+        ],
+        "md:px-8"
       )}
     >
       <h2
         className={classNames(
-          josefin.className,
-          "text-2xl font-bold leading-none translate-y-[2px]"
+          `${josefin.className} text-2xl font-bold leading-none translate-y-[2px]`
         )}
       >
         <Link href="/">TONY YU</Link>
       </h2>
       {w !== undefined && w >= mdViewport && (
-        <ul>
-          <li>
-            <Link href="/blog" className="font-bold">
-              Blog
-            </Link>
-          </li>
+        <ul className="flex space-x-4">
+          {pathnames.map((pn) => {
+            return (
+              <li key={pn.name}>
+                <Link
+                  className="text-xl font-bold hover:text-turquoise transition-colors"
+                  href={pn.path}
+                >
+                  {pn.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
       {w !== undefined && w < mdViewport && (
