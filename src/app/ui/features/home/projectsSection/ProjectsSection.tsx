@@ -5,14 +5,11 @@ import H1 from "../../../components/H1";
 import { classNames } from "@/app/lib/utils";
 import Abby from "./Abby";
 import TonyYuDev from "./TonyYuDev";
-import { useState } from "react";
-import ProjectsContextProvider, {
-  useProjectsState,
-} from "@/app/ui/contexts/ProjectsContext";
+import ProjectExpandedContextProvider from "@/app/ui/contexts/ProjectExpandedContext";
 
 export default function Projects() {
   return (
-    <ProjectsContextProvider>
+    <ProjectExpandedContextProvider>
       <section
         id={PROJECTS}
         className={classNames(
@@ -33,6 +30,6 @@ export default function Projects() {
           </li>
         </ul>
       </section>
-    </ProjectsContextProvider>
+    </ProjectExpandedContextProvider>
   );
 }

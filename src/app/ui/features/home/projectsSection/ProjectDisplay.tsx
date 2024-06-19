@@ -1,7 +1,10 @@
 import { classNames } from "@/app/lib/utils";
 import IconButton from "@/app/ui/components/IconButton";
 import StyledLink from "@/app/ui/components/StyledLink";
-import { useProjectsState } from "@/app/ui/contexts/ProjectsContext";
+import {
+  useProjectExpandedAPI,
+  useProjectExpandedState,
+} from "@/app/ui/contexts/ProjectExpandedContext";
 import {
   faArrowUpRightFromSquare,
   faMinus,
@@ -34,22 +37,23 @@ export default function ProjectDisplay({
   links = [],
   textPlacement = "left",
 }: ProjectDisplayProps) {
-  const { expandedProjectId, setExpandedProjectId } = useProjectsState();
-  const isExpanded = expandedProjectId === id;
+  const projectExpandedState = useProjectExpandedState();
+  const { expandProject, collapseProject } = useProjectExpandedAPI();
+  const isExpanded = projectExpandedState[id];
 
-  const handleClick = () => {
+  const handleExpandProject = () => {
     if (!isExpanded) {
-      setExpandedProjectId(id);
+      expandProject(id);
     }
   };
 
-  const collapseProject = () => {
-    setExpandedProjectId(null);
+  const handleCollapseProject = () => {
+    collapseProject(id);
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={handleExpandProject}
       id={id}
       className={classNames(
         "relative grid grid-cols-1 grid-rows-1 overflow-hidden",
@@ -73,7 +77,7 @@ export default function ProjectDisplay({
           }
         )}
         icon={faMinus}
-        onClick={collapseProject}
+        onClick={handleCollapseProject}
       />
       <div
         className={classNames(
