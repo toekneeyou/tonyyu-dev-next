@@ -141,7 +141,9 @@ export default function ProjectDisplay({
                   return (
                     <li
                       key={t}
-                      className={classNames({ "after:content-[','] font-medium": !isLast })}
+                      className={classNames({
+                        "after:content-[','] font-medium": !isLast,
+                      })}
                     >
                       {t}
                     </li>
@@ -154,7 +156,7 @@ export default function ProjectDisplay({
               <ul className="flex flex-col space-y-4">
                 {links.map((l) => {
                   return (
-                    <li className={l.name}>
+                    <li className={l.name} key={l.name}>
                       <StyledLink href={l.href} target="_blank">
                         <span className="font-bold mr-2">{l.name}</span>
                         <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
