@@ -3,11 +3,11 @@ import { classNames } from "@/app/lib/utils";
 const transitionClass =
   "md:transition-transform md:will-change-transform md:duration-300";
 
-interface HeroPartTwoProps {
+interface HeroTextPartTwoProps {
   isHalfway: boolean;
 }
 
-export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
+export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
   return (
     <div
       className={classNames(
@@ -15,8 +15,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
         "md:z-[-1] md:centered md:absolute md:top-0 md:left-0 md:w-full md:mx-auto md:h-full"
       )}
     >
-      <div className="text-xl font-bold md:w-[444px] flex flex-col -translate-y-12">
-        <p className="overflow-hidden mb-4">
+      <p className="text-xl font-bold md:w-[444px] flex flex-col -translate-y-12">
+        <span className="overflow-hidden mb-4">
           <span
             className={classNames("inline-block font-medium", transitionClass, {
               "md:translate-y-[110%]": !isHalfway,
@@ -24,8 +24,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
           >
             I specialize in
           </span>
-        </p>
-        <p className="overflow-hidden">
+        </span>
+        <span className="overflow-hidden">
           <strong
             className={classNames(
               "inline-block text-[6rem] leading-none",
@@ -35,8 +35,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
           >
             frontend
           </strong>
-        </p>
-        <p className="overflow-hidden mb-8">
+        </span>
+        <span className="overflow-hidden mb-8">
           <strong
             className={classNames(
               "inline-block text-[4rem] leading-none",
@@ -46,8 +46,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
           >
             development,
           </strong>
-        </p>
-        <p className="overflow-hidden mb-4">
+        </span>
+        <span className="overflow-hidden mb-4">
           <span
             className={classNames("inline-block font-medium", transitionClass, {
               "md:translate-y-[110%]": !isHalfway,
@@ -55,8 +55,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
           >
             building modern applications that are
           </span>
-        </p>
-        <p className="overflow-hidden">
+        </span>
+        <span className="overflow-hidden">
           <strong
             className={classNames("inline-block text-[2rem]", transitionClass, {
               "md:translate-y-[110%]": !isHalfway,
@@ -64,8 +64,8 @@ export default function HeroPartTwo({ isHalfway }: HeroPartTwoProps) {
           >
             user-friendly, captivating, and efficient.
           </strong>
-        </p>
-      </div>
+        </span>
+      </p>
     </div>
   );
 }

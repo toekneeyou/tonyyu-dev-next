@@ -7,11 +7,11 @@ import { josefin } from "@/app/ui/fonts";
 const transitionClass =
   "md:transition-transform md:will-change-transform md:duration-300";
 
-interface HeroPartOneProps {
+interface HeroTextPartOneProps {
   isHalfway: boolean;
 }
 
-export function HeroPartOne({ isHalfway }: HeroPartOneProps) {
+export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
   return (
     <div
       className={classNames(
@@ -60,6 +60,7 @@ export function HeroPartOne({ isHalfway }: HeroPartOneProps) {
                 aria-label={c.label}
                 icon={c.icon}
                 onClick={c.handleClick}
+                title={c.label}
               />
             </li>
           );
