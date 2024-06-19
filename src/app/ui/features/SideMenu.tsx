@@ -3,6 +3,7 @@
 import { classNames } from "@/app/lib/utils";
 import { useSideMenuState } from "../contexts/SideMenuContext";
 import Link from "next/link";
+import { pathnames } from "@/app/lib/constants";
 
 export default function SideMenu() {
   const { isSideMenuOpen } = useSideMenuState();
@@ -15,11 +16,17 @@ export default function SideMenu() {
         { "translate-x-full": !isSideMenuOpen }
       )}
     >
-      <nav>
-        <ul>
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
+      <nav className="h-full w-full centered pb-16">
+        <ul className="space-y-4">
+          {pathnames.map((pn) => {
+            return (
+              <li key={pn.name}>
+                <Link href={pn.path} className="text-xl font-bold">
+                  {pn.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </aside>

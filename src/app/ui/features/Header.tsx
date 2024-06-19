@@ -61,13 +61,13 @@ export default function Header({}: HeaderProps) {
         "md:px-8"
       )}
     >
-      <h2
+      <div
         className={classNames(
           `${josefin.className} text-2xl font-bold leading-none translate-y-[2px]`
         )}
       >
         <Link href="/">TONY YU</Link>
-      </h2>
+      </div>
       {w !== undefined && w >= mdViewport && (
         <nav>
           <ul className="flex space-x-4">
