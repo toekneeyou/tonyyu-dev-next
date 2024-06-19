@@ -18,9 +18,11 @@ interface HeaderProps {}
 export default function Header({}: HeaderProps) {
   const { isSideMenuOpen } = useSideMenuState();
   const { toggleSideMenu } = useSideMenuAPI();
-  const { w } = useViewportContext();
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
+  const { w } = useViewportContext();
+  const isMobile = w !== undefined && w < mdViewport;
+  const isNotMobile = w !== undefined && w >= mdViewport;
 
   useEffect(() => {
     const isHome = pathname === "/";
@@ -68,7 +70,7 @@ export default function Header({}: HeaderProps) {
       >
         <Link href="/">TONY YU</Link>
       </div>
-      {w !== undefined && w >= mdViewport && (
+      {isNotMobile && (
         <nav>
           <ul className="flex space-x-4">
             {pathnames.map((pn) => {
@@ -86,7 +88,7 @@ export default function Header({}: HeaderProps) {
           </ul>
         </nav>
       )}
-      {w !== undefined && w < mdViewport && (
+      {isMobile && (
         <div>
           <IconButton
             aria-label="Open Menu"
