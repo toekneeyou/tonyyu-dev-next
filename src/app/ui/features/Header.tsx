@@ -69,20 +69,22 @@ export default function Header({}: HeaderProps) {
         <Link href="/">TONY YU</Link>
       </h2>
       {w !== undefined && w >= mdViewport && (
-        <ul className="flex space-x-4">
-          {pathnames.map((pn) => {
-            return (
-              <li key={pn.name}>
-                <Link
-                  className="text-xl font-bold hover:text-turquoise transition-colors"
-                  href={pn.path}
-                >
-                  {pn.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <nav>
+          <ul className="flex space-x-4">
+            {pathnames.map((pn) => {
+              return (
+                <li key={pn.name}>
+                  <Link
+                    className="text-xl font-bold hover:text-turquoise transition-colors"
+                    href={pn.path}
+                  >
+                    {pn.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       )}
       {w !== undefined && w < mdViewport && (
         <div>
