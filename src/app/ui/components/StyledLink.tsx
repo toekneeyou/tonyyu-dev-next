@@ -21,7 +21,7 @@ export default function StyledLink({
       ) : (
         <a
           {...linkAttributes}
-          className={classNames("px-2", {
+          className={classNames({
             [linkAttributes.className ?? ""]: !!linkAttributes.className,
           })}
         >
