@@ -1,12 +1,7 @@
 import Image from "next/image";
-import AbbyVideos from "../../AbbyVideos";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import abbyLogo from "@public/logos/abby-logo-large.svg";
-import StyledLink from "@/app/ui/components/StyledLink";
 import ProjectDisplay from "./ProjectDisplay";
 import { ABBY_PROJECT } from "@/app/lib/id";
-import H2 from "@/app/ui/components/H2";
 
 interface AbbyProps {}
 export default function Abby({}: AbbyProps) {
@@ -14,9 +9,16 @@ export default function Abby({}: AbbyProps) {
     <ProjectDisplay
       textPlacement="right"
       id={ABBY_PROJECT}
-      backgroundImage="bg-abby bg-left"
+      backgroundImage="lg:bg-abby lg:portrait:bg-center lg:landscape:bg-left"
       backgroundColor="bg-abby-gradient"
-      logo={<Image src={abbyLogo} className="w-60" alt="Abby Logo" />}
+      logo={
+        <div className="centered flex-col">
+          <Image src={abbyLogo} className="w-40 lg:w-60 mb-4" alt="Abby Logo" />
+          <p className="font-medium text-lg lg:text-2xl text-app-fog">
+            Financial Dashboard
+          </p>
+        </div>
+      }
       projectName="ABBY"
       projectType="Financial Dashboard"
       projectDescription="with one goal in mind: to make it easy for users to manage and understand their financial health."

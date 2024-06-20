@@ -5,22 +5,19 @@ import H1 from "../../../components/H1";
 import { classNames } from "@/app/lib/utils";
 import Abby from "./Abby";
 import TonyYuDev from "./TonyYuDev";
-import { useState } from "react";
-import ProjectsContextProvider, {
-  useProjectsState,
-} from "@/app/ui/contexts/ProjectsContext";
+import ProjectExpandedContextProvider from "@/app/ui/contexts/ProjectExpandedContext";
 
 export default function Projects() {
   return (
-    <ProjectsContextProvider>
+    <ProjectExpandedContextProvider>
       <section
         id={PROJECTS}
         className={classNames(
           "py-12",
-          "md:pt-40 md:pb-0 md:relative md:z-10 md:bg-app-black"
+          "lg:pt-40 lg:pb-0 lg:relative lg:z-10 lg:bg-app-black"
         )}
       >
-        <div className="mb-32">
+        <div className={classNames("centered mb-24", "lg:mb-32")}>
           <H1>PROJECTS</H1>
         </div>
 
@@ -33,6 +30,6 @@ export default function Projects() {
           </li>
         </ul>
       </section>
-    </ProjectsContextProvider>
+    </ProjectExpandedContextProvider>
   );
 }

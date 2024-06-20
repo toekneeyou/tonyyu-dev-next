@@ -1,7 +1,10 @@
 import { classNames } from "@/app/lib/utils";
 import IconButton from "@/app/ui/components/IconButton";
 import StyledLink from "@/app/ui/components/StyledLink";
-import { useProjectsState } from "@/app/ui/contexts/ProjectsContext";
+import {
+  useProjectExpandedAPI,
+  useProjectExpandedState,
+} from "@/app/ui/contexts/ProjectExpandedContext";
 import {
   faArrowUpRightFromSquare,
   faMinus,
@@ -34,30 +37,31 @@ export default function ProjectDisplay({
   links = [],
   textPlacement = "left",
 }: ProjectDisplayProps) {
-  const { expandedProjectId, setExpandedProjectId } = useProjectsState();
-  const isExpanded = expandedProjectId === id;
+  const projectExpandedState = useProjectExpandedState();
+  const { expandProject, collapseProject } = useProjectExpandedAPI();
+  const isExpanded = projectExpandedState[id];
 
-  const handleClick = () => {
+  const handleExpandProject = () => {
     if (!isExpanded) {
-      setExpandedProjectId(id);
+      expandProject(id);
     }
   };
 
-  const collapseProject = () => {
-    setExpandedProjectId(null);
+  const handleCollapseProject = () => {
+    collapseProject(id);
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={handleExpandProject}
       id={id}
       className={classNames(
         "relative grid grid-cols-1 grid-rows-1 overflow-hidden",
         "transition-[height] duration-300 ease-out group",
-        "before:content-[''] before:absolute before:w-full before:h-full before:top-0 before:left-0 before:pointer-events-none before:transition-[backdrop-filter] before:duration-300 before:ease-out",
+        // "before:content-[''] before:absolute before:w-full before:h-full before:top-0 before:left-0 before:pointer-events-none before:transition-[backdrop-filter] before:duration-300 before:ease-out",
         { [backgroundColor]: !!backgroundColor },
         {
-          [`h-[260px] cursor-pointer`]: !isExpanded,
+          [`h-[200px] lg:h-[260px] cursor-pointer`]: !isExpanded,
           // ["before:hover:backdrop-blur-md "]: !isExpanded,
           // ["before:backdrop-blur-md"]: isExpanded,
           [`delay-300 h-[700px]`]: isExpanded,
@@ -73,11 +77,12 @@ export default function ProjectDisplay({
           }
         )}
         icon={faMinus}
-        onClick={collapseProject}
+        onClick={handleCollapseProject}
       />
       <div
         className={classNames(
-          "h-[260px] centered w-full col-start-1 col-end-2 row-start-1 row-end-2"
+          "h-[200px] centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
+          "lg:h-[260px]"
         )}
       >
         <div
@@ -99,9 +104,10 @@ export default function ProjectDisplay({
       </div>
       <div
         className={classNames(
-          "flex w-full col-start-1 col-end-2 row-start-1 row-end-1",
+          "centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
           "transition-opacity will-change-[opacity] duration-300 ease-out",
-          "grid grid-cols-2",
+          "p-8",
+          "lg:grid lg:grid-cols-2",
           {
             [backgroundImage]: !!backgroundImage,
           },
@@ -112,23 +118,31 @@ export default function ProjectDisplay({
         )}
       >
         <div
-          className={classNames("w-full h-full centered", {
-            "col-start-2 col-end-3": textPlacement === "right",
-          })}
+          className={classNames(
+            "w-full h-full centered",
+            {
+              "lg:col-start-2 lg:col-end-3": textPlacement === "right",
+            },
+            "md:w-[444px]",
+            "lg:w-full"
+          )}
         >
           <div className="space-y-8">
             <div className="relative inline-block after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-4 after:z-0 after:bg-app-gray">
-              <h2 className="font-bold z-10 relative mx-1 md:text-3xl text-app-white">
+              <h2
+                className={classNames(
+                  "font-bold z-10 relative mx-1 text-2xl text-app-white",
+                  "lg:text-3xl"
+                )}
+              >
                 {projectName}
               </h2>
             </div>
-            <p className="leading-6 font-medium md:w-[400px]">
-              <span className="inline-block font-medium text-3xl mb-2">
+            <p className="leading-6 font-medium lg:w-[400px]">
+              <span className="block font-medium text-3xl mb-2">
                 {projectType}
               </span>
-              <span className="inline-block font-medium">
-                {projectDescription}
-              </span>
+              <span className="block font-medium">{projectDescription}</span>
             </p>
 
             <div className="bg-app-gray h-[1px]" />

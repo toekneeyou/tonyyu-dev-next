@@ -14,6 +14,12 @@ export const lgViewport = 1024;
 export const xlViewport = 1280;
 export const xxlViewport = 1536;
 
+// Nav
+export const pathnames = [
+  { path: "/", name: "Home" },
+  { path: "/blog", name: "Blog" },
+];
+
 // Contacts
 export interface Contact {
   label: string;

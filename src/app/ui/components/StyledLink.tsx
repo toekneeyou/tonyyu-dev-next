@@ -14,22 +14,26 @@ export default function StyledLink({
   nextLinkProps = {} as LinkProps,
   ...linkAttributes
 }: StyledLinkProps) {
+  const className = classNames(
+    "transition-colors group-hover/link:text-app-black",
+    {
+      [linkAttributes.className ?? ""]: !!linkAttributes.className,
+    }
+  );
+
   return (
-    <div className="inline-block relative space-y-2">
+    <div className="inline-block relative space-y-2 group/link">
       {isNextLink ? (
-        <Link {...nextLinkProps}>{children}</Link>
+        <Link {...nextLinkProps} className={className}>
+          {children}
+        </Link>
       ) : (
-        <a
-          {...linkAttributes}
-          className={classNames({
-            [linkAttributes.className ?? ""]: !!linkAttributes.className,
-          })}
-        >
+        <a {...linkAttributes} className={className}>
           {children}
         </a>
       )}
 
-      <div className="h-[2px] w-full bg-turquoise" />
+      <div className="z-[-1] absolute -bottom-2 left-0 h-[2px] w-full bg-turquoise group-hover/link:h-[32px] transition-[height]" />
     </div>
   );
 }
