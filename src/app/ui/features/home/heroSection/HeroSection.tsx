@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import { classNames } from "@/app/lib/utils";
 import { mdViewport } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
 import { useViewportContext } from "@contexts/ViewportContext";
 import HeroTextPartOne from "./HeroTextPartOne";
+import tonyIceland from "@public/images/tony-iceland-1080x1350.jpg";
 
 const HeroTextPartTwo = dynamic(() => import("./HeroTextPartTwo"));
 const HeroImage = dynamic(() => import("./HeroImage"));
@@ -16,15 +18,16 @@ export default function HeroSection() {
   const { w } = useViewportContext();
   const ballContainerRef = useRef<HTMLDivElement>(null);
   const grayBallRef = useRef<HTMLDivElement>(null);
-  const turquoieBallRef = useRef<HTMLDivElement>(null);
+  const turquoiseBallRef = useRef<HTMLDivElement>(null);
 
+  const isMobile = w !== undefined && w < mdViewport;
   const isNotMobile = w !== undefined && w >= mdViewport;
   useEffect(() => {
     if (isNotMobile) {
       const threshold = Array.from({ length: 101 }, (_, i) => i / 100);
-      const redballContainer = ballContainerRef.current!;
+      const ballContainer = ballContainerRef.current!;
       const redball = grayBallRef.current!;
-      const grayBall = turquoieBallRef.current!;
+      const grayBall = turquoiseBallRef.current!;
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -53,7 +56,7 @@ export default function HeroSection() {
         { threshold }
       );
 
-      observer.observe(redballContainer);
+      observer.observe(ballContainer);
       return () => {
         observer.disconnect();
       };
@@ -64,42 +67,43 @@ export default function HeroSection() {
     <section
       id={HERO}
       className={classNames(
-        "h-screen",
-        "md:h-[200vh] md:w-full md:relative md:grid md:grid-cols-2"
+        "pt-40",
+        "md:pt-0 md:grid md:grid-cols-2 md:h-[200vh]"
       )}
     >
-      <div className="relative h-full z-10">
-        {/* Hero Text */}
-        <div
-          className={classNames(
-            "centered h-full w-full",
-            "md:sticky md:top-0 md:left-0 md:w-full md:mx-auto md:h-[50%] md:z-10"
-          )}
-        >
+      <div id="hero-left" className="md:h-[200vh] md:sticky md:top-0 md:z-10">
+        <div className="md:h-screen md:sticky md:top-0 md:grid md:grid-cols-1 md:grid-rows-1">
           <HeroTextPartOne isHalfway={isHalfway} />
-          {isNotMobile && <HeroTextPartTwo isHalfway={isHalfway} />}
-        </div>
-        {/* Ball Transition Effect */}
-        {isNotMobile && (
-          <div
-            ref={ballContainerRef}
-            className={classNames("hidden pointer-events-none", [
-              "md:absolute md:flex md:justify-center md:items-start md:top-[50%] md:bottom-0 md:w-full md:px-8",
-              "md:transition-transform md:will-change-transform",
-            ])}
-          >
-            <div
-              ref={grayBallRef}
-              className="w-full bg-app-gray rounded-full aspect-square overflow-hidden"
-            >
-              <div
-                ref={turquoieBallRef}
-                className="h-full w-full bg-turquoise opacity-0"
+          {isMobile && (
+            <div className="mt-10 mb-8 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]">
+              <Image
+                src={tonyIceland}
+                alt="Tony wearing a red jacket standing in front of a snow-capped mountain."
               />
             </div>
+          )}
+          <HeroTextPartTwo isHalfway={isHalfway} />
+        </div>
+        {/* Ball Transition Effect */}
+        <div
+          ref={ballContainerRef}
+          className={classNames(
+            "hidden pointer-events-none z-[-1]",
+            "md:absolute md:top-[50%] md:w-full md:bottom-0 md:flex md:justify-center md:items-start md:px-8"
+          )}
+        >
+          <div
+            ref={grayBallRef}
+            className="md:w-full md:aspect-square md:bg-app-gray md:rounded-full md:overflow-hidden"
+          >
+            <div
+              ref={turquoiseBallRef}
+              className="md:h-full md:w-full md:bg-turquoise md:opacity-0 md:transition-opacity md:will-change-[opacity]"
+            />
           </div>
-        )}
+        </div>
       </div>
+
       {isNotMobile && <HeroImage />}
     </section>
   );
