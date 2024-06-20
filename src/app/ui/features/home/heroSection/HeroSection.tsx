@@ -68,7 +68,7 @@ export default function HeroSection() {
     <section
       id={HERO}
       className={classNames(
-        "pt-40 mb-20",
+        "pt-40 mb-24",
         "md:pt-0 md:mb-0 md:grid md:grid-cols-2 md:h-[200vh]"
       )}
     >

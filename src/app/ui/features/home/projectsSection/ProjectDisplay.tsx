@@ -58,10 +58,10 @@ export default function ProjectDisplay({
       className={classNames(
         "relative grid grid-cols-1 grid-rows-1 overflow-hidden",
         "transition-[height] duration-300 ease-out group",
-        "before:content-[''] before:absolute before:w-full before:h-full before:top-0 before:left-0 before:pointer-events-none before:transition-[backdrop-filter] before:duration-300 before:ease-out",
+        // "before:content-[''] before:absolute before:w-full before:h-full before:top-0 before:left-0 before:pointer-events-none before:transition-[backdrop-filter] before:duration-300 before:ease-out",
         { [backgroundColor]: !!backgroundColor },
         {
-          [`h-[260px] cursor-pointer`]: !isExpanded,
+          [`h-[200px] md:h-[260px] cursor-pointer`]: !isExpanded,
           // ["before:hover:backdrop-blur-md "]: !isExpanded,
           // ["before:backdrop-blur-md"]: isExpanded,
           [`delay-300 h-[700px]`]: isExpanded,
@@ -81,7 +81,8 @@ export default function ProjectDisplay({
       />
       <div
         className={classNames(
-          "h-[260px] centered w-full col-start-1 col-end-2 row-start-1 row-end-2"
+          "h-[200px] centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
+          "md:h-[260px]"
         )}
       >
         <div
@@ -103,9 +104,10 @@ export default function ProjectDisplay({
       </div>
       <div
         className={classNames(
-          "flex w-full col-start-1 col-end-2 row-start-1 row-end-1",
+          "flex w-full col-start-1 col-end-2 row-start-1 row-end-2",
           "transition-opacity will-change-[opacity] duration-300 ease-out",
-          "grid grid-cols-2",
+          "p-8",
+          "md:grid md:grid-cols-2",
           {
             [backgroundImage]: !!backgroundImage,
           },
@@ -122,7 +124,12 @@ export default function ProjectDisplay({
         >
           <div className="space-y-8">
             <div className="relative inline-block after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-4 after:z-0 after:bg-app-gray">
-              <h2 className="font-bold z-10 relative mx-1 md:text-3xl text-app-white">
+              <h2
+                className={classNames(
+                  "font-bold z-10 relative mx-1 text-2xl text-app-white",
+                  "md:text-3xl"
+                )}
+              >
                 {projectName}
               </h2>
             </div>

@@ -7,13 +7,19 @@ interface H1Props {
 }
 export default function H1({ children }: H1Props) {
   return (
-    <h1
+    <div
       className={classNames(
-        `${josefin.className} font-bold text-2xl text-center`,
-        "md:text-8xl"
+        "relative inline-block",
+        "after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-6 after:md:h-16 after:z-0 after:bg-app-gray"
       )}
     >
-      {children}
-    </h1>
+      <h1
+        className={classNames(
+          `${josefin.className} font-bold z-10 relative mx-1 text-4xl md:text-8xl text-app-white`
+        )}
+      >
+        {children}
+      </h1>
+    </div>
   );
 }

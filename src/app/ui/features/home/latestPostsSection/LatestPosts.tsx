@@ -19,7 +19,7 @@ export default async function LatestPosts() {
         "md:relative md:z-10 md:bg-app-black md:pt-40 md:pb-0 md:space-y-32"
       )}
     >
-      <div>
+      <div className="centered">
         <H1>LATEST POSTS</H1>
       </div>
       <div className="centered">

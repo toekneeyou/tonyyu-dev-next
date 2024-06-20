@@ -18,6 +18,7 @@ export default function Footer({}: FooterProps) {
           return (
             <li key={c.label}>
               <IconButton
+                title={c.label}
                 aria-label={c.label}
                 icon={c.icon}
                 onClick={c.handleClick}

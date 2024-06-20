@@ -17,7 +17,7 @@ export default function Projects() {
           "md:pt-40 md:pb-0 md:relative md:z-10 md:bg-app-black"
         )}
       >
-        <div className="mb-32">
+        <div className={classNames("centered mb-24", "md:mb-32")}>
           <H1>PROJECTS</H1>
         </div>
 

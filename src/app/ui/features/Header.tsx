@@ -57,7 +57,7 @@ export default function Header({}: HeaderProps) {
       ref={headerRef}
       className={classNames(
         [
-          "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black",
+          "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black translate-y-[-100%]",
           "transition-transform duration-300",
         ],
         "md:px-8"

@@ -15,11 +15,11 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
   return (
     <div
       className={classNames(
-        "centered",
-        "md:h-screen md:row-start-1 md:row-end-2 md:col-start-1 md:col-end-2 md:z-20"
+        "centered px-8",
+        "md:px-0 md:h-screen md:row-start-1 md:row-end-2 md:col-start-1 md:col-end-2 md:z-20"
       )}
     >
-      <div className="md:w-[444px]">
+      <div className="w-full md:w-[444px]">
         <div className="overflow-hidden mb-8">
           <h1
             className={classNames(
