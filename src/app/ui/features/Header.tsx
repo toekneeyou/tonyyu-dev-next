@@ -10,7 +10,7 @@ import { josefin } from "../fonts";
 import IconButton from "../components/IconButton";
 import { useSideMenuAPI, useSideMenuState } from "../contexts/SideMenuContext";
 import { useViewportContext } from "../contexts/ViewportContext";
-import { mdViewport, pathnames } from "@/app/lib/constants";
+import { lgViewport, pathnames } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
 
 interface HeaderProps {}
@@ -21,8 +21,8 @@ export default function Header({}: HeaderProps) {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
   const { w } = useViewportContext();
-  const isMobile = w !== undefined && w < mdViewport;
-  const isNotMobile = w !== undefined && w >= mdViewport;
+  const isMobile = w !== undefined && w < lgViewport;
+  const isNotMobile = w !== undefined && w >= lgViewport;
 
   useEffect(() => {
     const isHome = pathname === "/";
@@ -60,7 +60,7 @@ export default function Header({}: HeaderProps) {
           "z-50 fixed top-0 left-0 right-0 h-16 p-4 flex justify-between items-center bg-app-black translate-y-[-100%]",
           "transition-transform duration-300",
         ],
-        "md:px-8"
+        "lg:px-8"
       )}
     >
       <div

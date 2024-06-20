@@ -7,7 +7,7 @@ import { inter } from "../fonts";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useViewportContext } from "../contexts/ViewportContext";
-import { mdViewport } from "@/app/lib/constants";
+import { lgViewport } from "@/app/lib/constants";
 
 const SideMenu = dynamic(() => import("./SideMenu"));
 
@@ -26,7 +26,7 @@ export default function Body({ children }: BodyProps) {
       <Header />
       {children}
       <Footer />
-      {w !== undefined && w < mdViewport && <SideMenu />}
+      {w !== undefined && w < lgViewport && <SideMenu />}
     </body>
   );
 }

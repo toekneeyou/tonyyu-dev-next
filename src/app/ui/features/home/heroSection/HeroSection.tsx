@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { classNames } from "@/app/lib/utils";
-import { contacts, mdViewport } from "@/app/lib/constants";
+import { contacts, lgViewport } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
 import { useViewportContext } from "@contexts/ViewportContext";
 import HeroTextPartOne from "./HeroTextPartOne";
@@ -16,13 +16,13 @@ const HeroImage = dynamic(() => import("./HeroImage"));
 
 export default function HeroSection() {
   const [isHalfway, setIsHalfway] = useState(false);
-  const { w } = useViewportContext();
+  const { w, h } = useViewportContext();
   const ballContainerRef = useRef<HTMLDivElement>(null);
   const grayBallRef = useRef<HTMLDivElement>(null);
   const turquoiseBallRef = useRef<HTMLDivElement>(null);
 
-  const isMobile = w !== undefined && w < mdViewport;
-  const isNotMobile = w !== undefined && w >= mdViewport;
+  const isMobile = w !== undefined && w < lgViewport;
+  const isNotMobile = w !== undefined && w >= lgViewport;
   useEffect(() => {
     if (isNotMobile) {
       const threshold = Array.from({ length: 101 }, (_, i) => i / 100);
@@ -69,14 +69,19 @@ export default function HeroSection() {
       id={HERO}
       className={classNames(
         "pt-40 mb-24",
-        "md:pt-0 md:mb-0 md:grid md:grid-cols-2 md:h-[200vh]"
+        "lg:pt-0 lg:mb-0 lg:grid lg:grid-cols-2 lg:h-[200vh]"
       )}
     >
-      <div id="hero-left" className="md:h-[200vh] md:sticky md:top-0 md:z-10">
-        <div className="md:h-screen md:sticky md:top-0 md:grid md:grid-cols-1 md:grid-rows-1">
+      <div id="hero-left" className="lg:h-[200vh] lg:sticky lg:top-0 lg:z-10">
+        <div className="lg:h-screen lg:sticky lg:top-0 lg:grid lg:grid-cols-1 lg:grid-rows-1">
           <HeroTextPartOne isHalfway={isHalfway} />
           {isMobile && (
-            <div className="mb-10 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]">
+            <div
+              className={classNames(
+                "mb-10 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]",
+                "md:translate-x-0 md:w-[444px] md:mx-auto"
+              )}
+            >
               <Image
                 src={tonyIceland}
                 alt="Tony wearing a red jacket standing in front of a snow-capped mountain."
@@ -85,7 +90,12 @@ export default function HeroSection() {
           )}
           <HeroTextPartTwo isHalfway={isHalfway} />
           {isMobile && (
-            <ul className={classNames("flex justify-end space-x-4 px-8")}>
+            <ul
+              className={classNames(
+                "flex justify-end space-x-4 px-8",
+                "md:w-[444px] md:mx-auto"
+              )}
+            >
               {contacts.map((c) => {
                 return (
                   <li key={c.label}>
@@ -106,16 +116,19 @@ export default function HeroSection() {
           ref={ballContainerRef}
           className={classNames(
             "hidden pointer-events-none z-[-1]",
-            "md:absolute md:top-[50%] md:w-full md:bottom-0 md:flex md:justify-center md:items-start md:px-8"
+            "lg:absolute lg:top-[50%] lg:w-full lg:bottom-0 lg:flex lg:justify-center lg:items-start lg:px-8"
           )}
         >
           <div
             ref={grayBallRef}
-            className="md:w-full md:aspect-square md:bg-app-gray md:rounded-full md:overflow-hidden"
+            className={classNames(
+              "lg:portrait:min-w-[200%]",
+              "lg:w-full lg:aspect-square lg:bg-app-gray lg:rounded-full lg:overflow-hidden"
+            )}
           >
             <div
               ref={turquoiseBallRef}
-              className="md:h-full md:w-full md:bg-turquoise md:opacity-0 md:transition-opacity md:will-change-[opacity]"
+              className="lg:h-full lg:w-full lg:bg-turquoise lg:opacity-0 lg:transition-opacity lg:will-change-[opacity]"
             />
           </div>
         </div>

@@ -9,20 +9,20 @@ export default function TonyYuDev({}: TonyYuDevProps) {
   return (
     <ProjectDisplay
       id={TONYYU_PROJECT}
-      backgroundImage="md:bg-tonyyu md:bg-right"
+      backgroundImage="lg:bg-tonyyu lg:portrait:bg-center lg:bg-right"
       backgroundColor="bg-app-black"
       logo={
         <div className="centered flex-col">
           <h3
             className={classNames(
               `${josefin.className} font-bold text-3xl mb-2`,
-              "md:text-6xl"
+              "lg:text-6xl"
             )}
           >
             TONY YU
             <span className={classNames("text-turquoise")}>.DEV</span>
           </h3>
-          <p className="font-medium text-lg md:text-2xl text-app-fog">
+          <p className="font-medium text-lg lg:text-2xl text-app-fog">
             Portfolio & Blog
           </p>
         </div>

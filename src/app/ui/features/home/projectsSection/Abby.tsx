@@ -9,12 +9,14 @@ export default function Abby({}: AbbyProps) {
     <ProjectDisplay
       textPlacement="right"
       id={ABBY_PROJECT}
-      backgroundImage="md:bg-abby md:bg-left"
+      backgroundImage="lg:bg-abby lg:portrait:bg-center lg:landscape:bg-left"
       backgroundColor="bg-abby-gradient"
       logo={
         <div className="centered flex-col">
-          <Image src={abbyLogo} className="w-40 md:w-60 mb-4" alt="Abby Logo" />
-          <p className="font-medium text-lg md:text-2xl text-app-fog">Financial Dashboard</p>
+          <Image src={abbyLogo} className="w-40 lg:w-60 mb-4" alt="Abby Logo" />
+          <p className="font-medium text-lg lg:text-2xl text-app-fog">
+            Financial Dashboard
+          </p>
         </div>
       }
       projectName="ABBY"

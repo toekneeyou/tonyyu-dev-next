@@ -14,10 +14,10 @@ export default function Projects() {
         id={PROJECTS}
         className={classNames(
           "py-12",
-          "md:pt-40 md:pb-0 md:relative md:z-10 md:bg-app-black"
+          "lg:pt-40 lg:pb-0 lg:relative lg:z-10 lg:bg-app-black"
         )}
       >
-        <div className={classNames("centered mb-24", "md:mb-32")}>
+        <div className={classNames("centered mb-24", "lg:mb-32")}>
           <H1>PROJECTS</H1>
         </div>
 

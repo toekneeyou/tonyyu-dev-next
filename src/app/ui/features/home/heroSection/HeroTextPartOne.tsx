@@ -5,7 +5,7 @@ import IconButton from "@/app/ui/components/IconButton";
 import { josefin } from "@/app/ui/fonts";
 
 const transitionClass =
-  "md:transition-transform md:will-change-transform md:duration-300";
+  "lg:transition-transform lg:will-change-transform lg:duration-300";
 
 interface HeroTextPartOneProps {
   isHalfway: boolean;
@@ -16,7 +16,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
     <div
       className={classNames(
         "centered px-8",
-        "md:px-0 md:h-screen md:row-start-1 md:row-end-2 md:col-start-1 md:col-end-2 md:z-20"
+        "lg:px-0 lg:h-screen lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:z-20"
       )}
     >
       <div className="w-full md:w-[444px]">
@@ -24,8 +24,8 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
           <h1
             className={classNames(
               `${josefin.className} text-8xl font-bold leading-none`,
-              `md:text-[8rem] ${transitionClass}`,
-              { "md:translate-y-[110%]": isHalfway }
+              `lg:text-[8rem] ${transitionClass}`,
+              { "lg:translate-y-[110%]": isHalfway }
             )}
           >
             TONY
@@ -35,8 +35,8 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
           <h1
             className={classNames(
               `${josefin.className} text-8xl font-bold leading-none`,
-              `md:text-[8rem] ${transitionClass}`,
-              { "md:translate-y-[110%]": isHalfway }
+              `lg:text-[8rem] ${transitionClass}`,
+              { "lg:translate-y-[110%]": isHalfway }
             )}
           >
             YU
@@ -45,7 +45,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
         <div className="overflow-hidden mb-16 flex justify-end">
           <div
             className={classNames(transitionClass, {
-              "md:translate-y-[110%]": isHalfway,
+              "lg:translate-y-[110%]": isHalfway,
             })}
           >
             <H2>Hi, I&apos;m a software engineer</H2>
@@ -54,7 +54,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
         <ul
           className={classNames(
             "hidden",
-            "md:flex md:justify-end md:space-x-4"
+            "lg:flex lg:justify-end lg:space-x-4"
           )}
         >
           {contacts.map((c) => {

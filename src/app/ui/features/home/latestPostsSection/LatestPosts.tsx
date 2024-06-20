@@ -16,7 +16,7 @@ export default async function LatestPosts() {
       id={LATEST_POSTS}
       className={classNames(
         "py-12 space-y-12",
-        "md:relative md:z-10 md:bg-app-black md:pt-40 md:pb-0 md:space-y-32"
+        "lg:relative lg:z-10 lg:bg-app-black lg:pt-40 lg:pb-0 lg:space-y-32"
       )}
     >
       <div className="centered">

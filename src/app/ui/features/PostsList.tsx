@@ -23,7 +23,7 @@ export default function PostsList({ posts }: PostsListProps) {
             />
 
             <Link href={href}>
-              <h3 className="font-bold md:text-2xl">{title}</h3>
+              <h3 className="font-bold lg:text-2xl">{title}</h3>
               <p className="capitalize text-app-fog text-[12px]">
                 {dateString} - {p.categories.join(", ")}
               </p>

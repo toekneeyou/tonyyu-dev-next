@@ -61,7 +61,7 @@ export default function ProjectDisplay({
         // "before:content-[''] before:absolute before:w-full before:h-full before:top-0 before:left-0 before:pointer-events-none before:transition-[backdrop-filter] before:duration-300 before:ease-out",
         { [backgroundColor]: !!backgroundColor },
         {
-          [`h-[200px] md:h-[260px] cursor-pointer`]: !isExpanded,
+          [`h-[200px] lg:h-[260px] cursor-pointer`]: !isExpanded,
           // ["before:hover:backdrop-blur-md "]: !isExpanded,
           // ["before:backdrop-blur-md"]: isExpanded,
           [`delay-300 h-[700px]`]: isExpanded,
@@ -82,7 +82,7 @@ export default function ProjectDisplay({
       <div
         className={classNames(
           "h-[200px] centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
-          "md:h-[260px]"
+          "lg:h-[260px]"
         )}
       >
         <div
@@ -104,10 +104,10 @@ export default function ProjectDisplay({
       </div>
       <div
         className={classNames(
-          "flex w-full col-start-1 col-end-2 row-start-1 row-end-2",
+          "centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
           "transition-opacity will-change-[opacity] duration-300 ease-out",
           "p-8",
-          "md:grid md:grid-cols-2",
+          "lg:grid lg:grid-cols-2",
           {
             [backgroundImage]: !!backgroundImage,
           },
@@ -118,28 +118,31 @@ export default function ProjectDisplay({
         )}
       >
         <div
-          className={classNames("w-full h-full centered", {
-            "col-start-2 col-end-3": textPlacement === "right",
-          })}
+          className={classNames(
+            "w-full h-full centered",
+            {
+              "lg:col-start-2 lg:col-end-3": textPlacement === "right",
+            },
+            "md:w-[444px]",
+            "lg:w-full"
+          )}
         >
           <div className="space-y-8">
             <div className="relative inline-block after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:right-0 after:h-4 after:z-0 after:bg-app-gray">
               <h2
                 className={classNames(
                   "font-bold z-10 relative mx-1 text-2xl text-app-white",
-                  "md:text-3xl"
+                  "lg:text-3xl"
                 )}
               >
                 {projectName}
               </h2>
             </div>
-            <p className="leading-6 font-medium md:w-[400px]">
-              <span className="inline-block font-medium text-3xl mb-2">
+            <p className="leading-6 font-medium lg:w-[400px]">
+              <span className="block font-medium text-3xl mb-2">
                 {projectType}
               </span>
-              <span className="inline-block font-medium">
-                {projectDescription}
-              </span>
+              <span className="block font-medium">{projectDescription}</span>
             </p>
 
             <div className="bg-app-gray h-[1px]" />
