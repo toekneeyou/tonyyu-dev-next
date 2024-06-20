@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { classNames } from "@/app/lib/utils";
-import { mdViewport } from "@/app/lib/constants";
+import { contacts, mdViewport } from "@/app/lib/constants";
 import { HERO } from "@/app/lib/id";
 import { useViewportContext } from "@contexts/ViewportContext";
 import HeroTextPartOne from "./HeroTextPartOne";
 import tonyIceland from "@public/images/tony-iceland-1080x1350.jpg";
+import IconButton from "@/app/ui/components/IconButton";
 
 const HeroTextPartTwo = dynamic(() => import("./HeroTextPartTwo"));
 const HeroImage = dynamic(() => import("./HeroImage"));
@@ -67,15 +68,15 @@ export default function HeroSection() {
     <section
       id={HERO}
       className={classNames(
-        "pt-40",
-        "md:pt-0 md:grid md:grid-cols-2 md:h-[200vh]"
+        "pt-40 mb-20",
+        "md:pt-0 md:mb-0 md:grid md:grid-cols-2 md:h-[200vh]"
       )}
     >
       <div id="hero-left" className="md:h-[200vh] md:sticky md:top-0 md:z-10">
         <div className="md:h-screen md:sticky md:top-0 md:grid md:grid-cols-1 md:grid-rows-1">
           <HeroTextPartOne isHalfway={isHalfway} />
           {isMobile && (
-            <div className="mt-10 mb-8 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]">
+            <div className="mb-10 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]">
               <Image
                 src={tonyIceland}
                 alt="Tony wearing a red jacket standing in front of a snow-capped mountain."
@@ -83,6 +84,22 @@ export default function HeroSection() {
             </div>
           )}
           <HeroTextPartTwo isHalfway={isHalfway} />
+          {isMobile && (
+            <ul className={classNames("flex justify-end space-x-4 px-8")}>
+              {contacts.map((c) => {
+                return (
+                  <li key={c.label}>
+                    <IconButton
+                      aria-label={c.label}
+                      icon={c.icon}
+                      onClick={c.handleClick}
+                      title={c.label}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
         {/* Ball Transition Effect */}
         <div

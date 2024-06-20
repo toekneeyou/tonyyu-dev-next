@@ -51,7 +51,12 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
             <H2>Hi, I&apos;m a software engineer</H2>
           </div>
         </div>
-        <ul className="flex justify-end space-x-4">
+        <ul
+          className={classNames(
+            "hidden",
+            "md:flex md:justify-end md:space-x-4"
+          )}
+        >
           {contacts.map((c) => {
             return (
               <li key={c.label}>
