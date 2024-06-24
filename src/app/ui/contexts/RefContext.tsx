@@ -12,6 +12,7 @@ import {
 interface RefContextValue {
   bodyRef: RefObject<HTMLBodyElement>;
   heroRef: RefObject<HTMLElement>;
+  headerRef: RefObject<HTMLElement>;
 }
 
 const RefContext = createContext<RefContextValue | null>(null);
@@ -25,11 +26,13 @@ export default function RefContextProvider({
 }: RefContextProviderProps) {
   const bodyRef = useRef<HTMLBodyElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   const value = useMemo(() => {
     return {
       bodyRef,
       heroRef,
+      headerRef,
     };
   }, []);
 
