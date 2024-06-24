@@ -18,8 +18,8 @@ export default function H1({ children }: H1Props) {
       <h1
         className={classNames(
           `${josefin.className} font-bold z-10 relative mx-1 text-4xl text-app-white`,
-          "md:text-6xl",
-          "lg:text-8xl"
+          "md:text-5xl",
+          "lg:text-7xl"
         )}
       >
         {children}
