@@ -5,6 +5,8 @@ config.autoAddCss = false;
 import type { Metadata } from "next";
 import ViewportContextProvider from "./ui/contexts/ViewportContext";
 import SideMenuContextProvider from "./ui/contexts/SideMenuContext";
+import LoadingContextProvider from "./ui/contexts/LoadingContext";
+import RefContextProvider from "./ui/contexts/RefContext";
 import Body from "./ui/features/Body";
 
 import "./globals.css";
@@ -52,11 +54,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <SideMenuContextProvider>
-        <ViewportContextProvider>
-          <Body>{children}</Body>
-        </ViewportContextProvider>
-      </SideMenuContextProvider>
+      <RefContextProvider>
+        <SideMenuContextProvider>
+          <ViewportContextProvider>
+            <LoadingContextProvider>
+              <Body>{children}</Body>
+            </LoadingContextProvider>
+          </ViewportContextProvider>
+        </SideMenuContextProvider>
+      </RefContextProvider>
     </html>
   );
 }

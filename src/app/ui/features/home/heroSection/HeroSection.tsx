@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { classNames } from "@/app/lib/utils";
@@ -10,85 +10,97 @@ import { useViewportContext } from "@contexts/ViewportContext";
 import HeroTextPartOne from "./HeroTextPartOne";
 import tonyIceland from "@public/images/tony-iceland-1080x1350.jpg";
 import IconButton from "@/app/ui/components/IconButton";
+import { useRefContext } from "@/app/ui/contexts/RefContext";
+import { useLoadingContextAPI } from "@/app/ui/contexts/LoadingContext";
+import HeroTextPartTwo from "./HeroTextPartTwo";
 
-const HeroTextPartTwo = dynamic(() => import("./HeroTextPartTwo"));
 const HeroImage = dynamic(() => import("./HeroImage"));
 
+const HeroTextPartThree = dynamic(() => import("./HeroTextPartThree"));
+
+type HeroSubSection =
+  | "HeroTextPartOne"
+  | "HeroTextPartTwo"
+  | "HeroTextPartThree";
+
 export default function HeroSection() {
-  const [isHalfway, setIsHalfway] = useState(false);
+  const [subSection, setSubSection] =
+    useState<HeroSubSection>("HeroTextPartOne");
   const { w, h } = useViewportContext();
-  const ballContainerRef = useRef<HTMLDivElement>(null);
-  const grayBallRef = useRef<HTMLDivElement>(null);
-  const turquoiseBallRef = useRef<HTMLDivElement>(null);
+  const { heroRef } = useRefContext();
+  const { finishLoadingState } = useLoadingContextAPI();
+
+  const handleLoading = () => {
+    finishLoadingState("/");
+  };
 
   const isMobile = w !== undefined && w < lgViewport;
   const isNotMobile = w !== undefined && w >= lgViewport;
+  const isPortrait = w !== undefined && h !== undefined && h > w;
+
   useEffect(() => {
+    const hero = heroRef.current!;
+
     if (isNotMobile) {
-      const threshold = Array.from({ length: 101 }, (_, i) => i / 100);
-      const ballContainer = ballContainerRef.current!;
-      const redball = grayBallRef.current!;
-      const grayBall = turquoiseBallRef.current!;
+      const handleScroll = () => {
+        let ps = window.scrollY / hero.clientHeight;
+        ps = Math.min(1, ps);
+        if (ps <= 0.1) {
+          setSubSection("HeroTextPartOne");
+        } else if (ps <= 0.4) {
+          setSubSection("HeroTextPartTwo");
+        } else if (ps <= 1) {
+          setSubSection("HeroTextPartThree");
+        }
+      };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const { bottom, top, height } = entry.boundingClientRect;
-            setIsHalfway(entry.intersectionRatio > 0.2);
+      window.addEventListener("scroll", handleScroll);
 
-            if (bottom >= 0) {
-              let scale = 1;
-              if (top >= 0) {
-                scale = entry.intersectionRatio;
-              } else {
-                scale = 1 + (5 * Math.abs(top)) / height;
-              }
-
-              redball.style.transform = `scale(${scale})`;
-            }
-
-            let opacity = 0;
-            if (top <= 0) {
-              opacity = Math.max(0, 1 - entry.intersectionRatio);
-            }
-            grayBall.style.opacity = `${opacity}`;
-          });
-        },
-        { threshold }
-      );
-
-      observer.observe(ballContainer);
       return () => {
-        observer.disconnect();
+        window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [isNotMobile]);
+  }, [isNotMobile, heroRef]);
 
   return (
     <section
+      ref={heroRef}
       id={HERO}
       className={classNames(
-        "pt-40 mb-24",
-        "lg:pt-0 lg:mb-0 lg:grid lg:grid-cols-2 lg:h-[200vh]"
+        "pt-32 pb-24 bg-app-black",
+        "lg:py-0 lg:grid lg:grid-cols-2 lg:h-[300vh]",
+        "lg:portrait:grid-cols-1"
       )}
     >
-      <div id="hero-left" className="lg:h-[200vh] lg:sticky lg:top-0 lg:z-10">
+      <div
+        id="hero-left"
+        className={classNames(
+          [
+            "lg:h-[inherit] lg:sticky lg:top-0 lg:z-10 lg:bg-app-black lg:w-full",
+            "lg:transition-[width] lg:duration-300 lg:ease-in-out ",
+          ],
+          { "lg:w-[200%]": subSection === "HeroTextPartThree" && !isPortrait }
+        )}
+      >
         <div className="lg:h-screen lg:sticky lg:top-0 lg:grid lg:grid-cols-1 lg:grid-rows-1">
-          <HeroTextPartOne isHalfway={isHalfway} />
-          {isMobile && (
+          <HeroTextPartOne hide={subSection !== "HeroTextPartOne"} />
+          {(isMobile || isPortrait) && (
             <div
               className={classNames(
                 "mb-10 w-full centered aspect-square rounded-full overflow-hidden translate-x-[-20%]",
-                "md:translate-x-0 md:w-[444px] md:mx-auto"
+                "md:translate-x-0 md:w-[444px] md:mx-auto",
+                "lg:portrait:row-start-1 lg:portrait:row-end-2 lg:portrait:col-start-1 lg:portrait:col-end-2 lg:portrait:self-center lg:portrait:translate-x-32"
               )}
             >
               <Image
+                priority
                 src={tonyIceland}
                 alt="Tony wearing a red jacket standing in front of a snow-capped mountain."
+                onLoad={handleLoading}
               />
             </div>
           )}
-          <HeroTextPartTwo isHalfway={isHalfway} />
+          <HeroTextPartTwo show={subSection === "HeroTextPartTwo"} />
           {isMobile && (
             <ul
               className={classNames(
@@ -110,31 +122,15 @@ export default function HeroSection() {
               })}
             </ul>
           )}
-        </div>
-        {/* Ball Transition Effect */}
-        <div
-          ref={ballContainerRef}
-          className={classNames(
-            "hidden pointer-events-none z-[-1]",
-            "lg:absolute lg:top-[50%] lg:w-full lg:bottom-0 lg:flex lg:justify-center lg:items-start lg:px-8"
+          {!isMobile && (
+            <HeroTextPartThree show={subSection === "HeroTextPartThree"} />
           )}
-        >
-          <div
-            ref={grayBallRef}
-            className={classNames(
-              "lg:portrait:min-w-[200%]",
-              "lg:w-full lg:aspect-square lg:bg-app-gray lg:rounded-full lg:overflow-hidden"
-            )}
-          >
-            <div
-              ref={turquoiseBallRef}
-              className="lg:h-full lg:w-full lg:bg-turquoise lg:opacity-0 lg:transition-opacity lg:will-change-[opacity]"
-            />
-          </div>
         </div>
       </div>
 
-      {isNotMobile && <HeroImage />}
+      {isNotMobile && !isPortrait && (
+        <HeroImage handleLoading={handleLoading} />
+      )}
     </section>
   );
 }

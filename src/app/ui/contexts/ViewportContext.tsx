@@ -4,16 +4,17 @@ import {
   ReactNode,
   createContext,
   useContext,
-  useEffect,
+  useLayoutEffect,
   useState,
 } from "react";
+import { useRefContext } from "./RefContext";
 
-interface ViewportContextState {
+interface ViewportContextValue {
   w: number | undefined;
   h: number | undefined;
 }
 
-const ViewportContext = createContext<ViewportContextState | null>(null);
+const ViewportContext = createContext<ViewportContextValue | null>(null);
 
 interface ViewportContextProviderProps {
   children: ReactNode;
@@ -22,27 +23,32 @@ interface ViewportContextProviderProps {
 export default function ViewportContextProvider({
   children,
 }: ViewportContextProviderProps) {
-  const [dimensions, setDimensions] = useState<ViewportContextState>({
+  const [dimensions, setDimensions] = useState<ViewportContextValue>({
     w: undefined,
     h: undefined,
   });
+  const { bodyRef } = useRefContext();
 
-  useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        setDimensions({
-          w: entry.contentRect.width,
-          h: entry.contentRect.height,
+  useLayoutEffect(() => {
+    const body = bodyRef.current;
+
+    if (body) {
+      const observer = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          setDimensions({
+            w: window.innerWidth,
+            h: window.innerHeight,
+          });
         });
       });
-    });
 
-    observer.observe(document.body);
+      observer.observe(body);
 
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [bodyRef]);
 
   return (
     <ViewportContext.Provider value={dimensions}>

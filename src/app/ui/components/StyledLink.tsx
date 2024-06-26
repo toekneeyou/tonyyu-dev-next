@@ -15,7 +15,7 @@ export default function StyledLink({
   ...linkAttributes
 }: StyledLinkProps) {
   const className = classNames(
-    "transition-colors group-hover/link:text-app-black",
+    "transition-colors group-hover/link:text-app-black relative z-10",
     {
       [linkAttributes.className ?? ""]: !!linkAttributes.className,
     }
@@ -33,7 +33,7 @@ export default function StyledLink({
         </a>
       )}
 
-      <div className="z-[-1] absolute -bottom-2 left-0 h-[2px] w-full bg-turquoise group-hover/link:h-[32px] transition-[height]" />
+      <div className="absolute -bottom-2 left-0 h-[2px] w-full bg-turquoise group-hover/link:h-[32px] transition-[height]" />
     </div>
   );
 }

@@ -1,12 +1,14 @@
 "use client";
 
 import { classNames } from "@/app/lib/utils";
-import { useSideMenuState } from "../contexts/SideMenuContext";
+import { useSideMenuContext } from "../contexts/SideMenuContext";
 import Link from "next/link";
 import { pathnames } from "@/app/lib/constants";
 
-export default function SideMenu() {
-  const { isSideMenuOpen } = useSideMenuState();
+interface SideMenuProps {}
+
+export default function SideMenu({}: SideMenuProps) {
+  const { isSideMenuOpen } = useSideMenuContext();
 
   return (
     <aside

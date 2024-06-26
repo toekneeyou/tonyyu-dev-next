@@ -2,8 +2,8 @@ import { classNames } from "@/app/lib/utils";
 import IconButton from "@/app/ui/components/IconButton";
 import StyledLink from "@/app/ui/components/StyledLink";
 import {
-  useProjectExpandedAPI,
-  useProjectExpandedState,
+  useProjectExpandedContextAPI,
+  useProjectExpandedContext,
 } from "@/app/ui/contexts/ProjectExpandedContext";
 import {
   faArrowUpRightFromSquare,
@@ -37,8 +37,8 @@ export default function ProjectDisplay({
   links = [],
   textPlacement = "left",
 }: ProjectDisplayProps) {
-  const projectExpandedState = useProjectExpandedState();
-  const { expandProject, collapseProject } = useProjectExpandedAPI();
+  const projectExpandedState = useProjectExpandedContext();
+  const { expandProject, collapseProject } = useProjectExpandedContextAPI();
   const isExpanded = projectExpandedState[id];
 
   const handleExpandProject = () => {
@@ -70,7 +70,7 @@ export default function ProjectDisplay({
     >
       <IconButton
         className={classNames(
-          "absolute top-8 right-8 z-20 transition-opacity will-change-[opacity] duration-300 ease-out",
+          "absolute top-8 right-8 z-20 transition-opacity duration-300 ease-out",
           {
             "opacity-0 pointer-events-none": !isExpanded,
             "opacity-100 delay-300": isExpanded,
@@ -93,7 +93,7 @@ export default function ProjectDisplay({
         >
           <div
             className={classNames(
-              "transition-transform will-change-transform duration-300",
+              "transition-transform duration-300",
 
               { "translate-y-[-110%]": isExpanded }
             )}
@@ -105,7 +105,7 @@ export default function ProjectDisplay({
       <div
         className={classNames(
           "centered w-full col-start-1 col-end-2 row-start-1 row-end-2",
-          "transition-opacity will-change-[opacity] duration-300 ease-out",
+          "transition-opacity duration-300 ease-out",
           "p-8",
           "lg:grid lg:grid-cols-2",
           {

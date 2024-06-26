@@ -4,19 +4,19 @@ import H2 from "@/app/ui/components/H2";
 import IconButton from "@/app/ui/components/IconButton";
 import { josefin } from "@/app/ui/fonts";
 
-const transitionClass =
-  "lg:transition-transform lg:will-change-transform lg:duration-300";
+const transitionClass = "lg:transition-transform lg:duration-300";
 
 interface HeroTextPartOneProps {
-  isHalfway: boolean;
+  hide: boolean;
 }
 
-export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
+export default function HeroTextPartOne({ hide }: HeroTextPartOneProps) {
   return (
     <div
       className={classNames(
         "centered px-8",
-        "lg:px-0 lg:h-screen lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:z-20"
+        "lg:px-0 lg:h-screen lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:z-20",
+        "lg:portrait:-translate-x-32"
       )}
     >
       <div className="w-full md:w-[444px]">
@@ -25,7 +25,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
             className={classNames(
               `${josefin.className} text-8xl font-bold leading-none`,
               `lg:text-[8rem] ${transitionClass}`,
-              { "lg:translate-y-[110%]": isHalfway }
+              { "lg:translate-y-[110%]": hide }
             )}
           >
             TONY
@@ -36,7 +36,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
             className={classNames(
               `${josefin.className} text-8xl font-bold leading-none`,
               `lg:text-[8rem] ${transitionClass}`,
-              { "lg:translate-y-[110%]": isHalfway }
+              { "lg:translate-y-[110%]": hide }
             )}
           >
             YU
@@ -45,7 +45,7 @@ export default function HeroTextPartOne({ isHalfway }: HeroTextPartOneProps) {
         <div className="overflow-hidden mb-16 flex justify-end">
           <div
             className={classNames(transitionClass, {
-              "lg:translate-y-[110%]": isHalfway,
+              "lg:translate-y-[110%]": hide,
             })}
           >
             <H2>Hi, I&apos;m a software engineer</H2>

@@ -10,7 +10,7 @@ export default function TonyYuDev({}: TonyYuDevProps) {
     <ProjectDisplay
       id={TONYYU_PROJECT}
       backgroundImage="lg:bg-tonyyu lg:portrait:bg-center lg:bg-right"
-      backgroundColor="bg-app-black"
+      backgroundColor="bg-app-gray"
       logo={
         <div className="centered flex-col">
           <h3
