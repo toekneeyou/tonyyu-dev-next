@@ -14,22 +14,28 @@ export default async function LatestPosts() {
   return (
     <section
       id={LATEST_POSTS}
-      className={classNames(
-        "py-12 space-y-12",
-        "lg:relative lg:z-10 lg:bg-app-black lg:pt-40 lg:pb-0 lg:space-y-32"
-      )}
+      className={classNames("pb-24", "lg:pb-0 lg:relative lg:z-10")}
     >
-      <div className="centered">
+      <div className={classNames("centered py-24", "lg:py-32")}>
         <H1>LATEST POSTS</H1>
       </div>
-      <div className="centered">
-        <BlogList posts={posts} />
-      </div>
-      <div className="centered">
-        <StyledLink isNextLink={true} nextLinkProps={{ href: "/blog" }}>
-          <span className="font-bold mr-2">Go to Blog</span>
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-        </StyledLink>
+
+      <div
+        className={classNames(
+          "space-y-24",
+          "lg:bg-app-black lg:space-y-32 lg:pt-32 lg:pb-64"
+        )}
+      >
+        <div className="centered">
+          <BlogList posts={posts} />
+        </div>
+
+        <div className="centered">
+          <StyledLink isNextLink={true} nextLinkProps={{ href: "/blog" }}>
+            <span className="font-bold mr-2">Go to Blog</span>
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          </StyledLink>
+        </div>
       </div>
     </section>
   );
