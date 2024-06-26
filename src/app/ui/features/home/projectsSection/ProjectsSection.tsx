@@ -6,22 +6,23 @@ import { classNames } from "@/app/lib/utils";
 import Abby from "./Abby";
 import TonyYuDev from "./TonyYuDev";
 import ProjectExpandedContextProvider from "@/app/ui/contexts/ProjectExpandedContext";
+import { useRefContext } from "@/app/ui/contexts/RefContext";
 
 export default function Projects() {
+  const { projectRef } = useRefContext();
+
   return (
     <ProjectExpandedContextProvider>
       <section
+        ref={projectRef}
         id={PROJECTS}
-        className={classNames(
-          "py-12",
-          "lg:pt-40 lg:pb-0 lg:relative lg:z-10 lg:bg-app-black"
-        )}
+        className={classNames("pb-24", "lg:pb-0 lg:relative lg:z-10")}
       >
-        <div className={classNames("centered mb-24", "lg:mb-32")}>
+        <div className={classNames("centered py-24", "lg:py-32")}>
           <H1>PROJECTS</H1>
         </div>
 
-        <ul>
+        <ul className="lg:py-32 lg:bg-app-black">
           <li>
             <Abby />
           </li>
