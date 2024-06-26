@@ -7,7 +7,7 @@ import {
   useReducer,
 } from "react";
 
-interface ProjectExpandedState {
+interface ProjectExpandedValue {
   [projectId: string]: boolean;
 }
 
@@ -16,10 +16,8 @@ interface ProjectExpandedAPI {
   collapseProject: (id: string) => void;
 }
 
-const ProjectExpandedStateContext = createContext<ProjectExpandedState | null>(
-  null
-);
-const ProjectExpandedAPIContext = createContext<ProjectExpandedAPI | null>(
+const ProjectExpandedContext = createContext<ProjectExpandedValue | null>(null);
+const ProjectExpandedContextAPI = createContext<ProjectExpandedAPI | null>(
   null
 );
 
@@ -32,9 +30,9 @@ type ProjectExpandedActions =
   | { type: "COLLAPSE"; payload: string };
 
 const reducer = (
-  state: ProjectExpandedState,
+  state: ProjectExpandedValue,
   action: ProjectExpandedActions
-): ProjectExpandedState => {
+): ProjectExpandedValue => {
   switch (action.type) {
     case "EXPAND":
       return { ...state, [action.payload]: true };
@@ -61,27 +59,29 @@ export default function ProjectExpandedContextProvider({
   );
 
   return (
-    <ProjectExpandedStateContext.Provider value={projectExpandedState}>
-      <ProjectExpandedAPIContext.Provider value={projectExpandedApi}>
+    <ProjectExpandedContext.Provider value={projectExpandedState}>
+      <ProjectExpandedContextAPI.Provider value={projectExpandedApi}>
         {children}
-      </ProjectExpandedAPIContext.Provider>
-    </ProjectExpandedStateContext.Provider>
+      </ProjectExpandedContextAPI.Provider>
+    </ProjectExpandedContext.Provider>
   );
 }
 
-export function useProjectExpandedState() {
-  const projectExpandedState = useContext(ProjectExpandedStateContext);
+export function useProjectExpandedContext() {
+  const projectExpandedState = useContext(ProjectExpandedContext);
   if (!projectExpandedState) {
-    throw new Error("useProjectExpandedState must be used within a Provider");
+    throw new Error("useProjectExpandedContext must be used within a Provider");
   } else {
     return projectExpandedState;
   }
 }
 
-export function useProjectExpandedAPI() {
-  const projectExpandedAPI = useContext(ProjectExpandedAPIContext);
+export function useProjectExpandedContextAPI() {
+  const projectExpandedAPI = useContext(ProjectExpandedContextAPI);
   if (!projectExpandedAPI) {
-    throw new Error("useProjectExpandedState must be used within a Provider");
+    throw new Error(
+      "useProjectExpandedContextAPI must be used within a Provider"
+    );
   } else {
     return projectExpandedAPI;
   }
