@@ -34,10 +34,9 @@ export default function Header({}: HeaderProps) {
   useEffect(() => {
     const isHome = pathname === "/";
     const project = projectRef.current;
+    const header = headerRef.current!;
 
     if (isHome && project) {
-      const header = headerRef.current!;
-
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -58,6 +57,9 @@ export default function Header({}: HeaderProps) {
       return () => {
         observer.disconnect();
       };
+    } else {
+      header.classList.remove("translate-y-[-100%]");
+      header.classList.add("translate-y-0");
     }
   }, [pathname]);
 
