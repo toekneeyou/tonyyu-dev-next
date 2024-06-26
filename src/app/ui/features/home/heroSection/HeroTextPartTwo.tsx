@@ -1,18 +1,18 @@
 import { classNames } from "@/app/lib/utils";
 
-const transitionClass =
-  "lg:transition-transform lg:will-change-transform lg:duration-300";
+const transitionClass = "lg:transition-transform lg:duration-300";
 
 interface HeroTextPartTwoProps {
-  isHalfway: boolean;
+  show: boolean;
 }
 
-export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
+export default function HeroTextPartTwo({ show }: HeroTextPartTwoProps) {
   return (
     <div
       className={classNames(
         "centered px-8",
-        "lg:px-0 lg:h-screen lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:z-10"
+        "lg:px-0 lg:h-screen lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-2 lg:z-10 lg:pointer-events-none",
+        "lg:portrait:-translate-x-32"
       )}
     >
       <p
@@ -25,7 +25,7 @@ export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
         <span className="inline-block overflow-hidden mb-4">
           <span
             className={classNames("inline-block font-medium", transitionClass, {
-              "lg:translate-y-[110%]": !isHalfway,
+              "lg:translate-y-[110%]": !show,
             })}
           >
             I specialize in
@@ -36,7 +36,7 @@ export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
             className={classNames(
               "inline-block text-6xl leading-none",
               `lg:text-[6rem] ${transitionClass}`,
-              { "lg:translate-y-[110%]": !isHalfway }
+              { "lg:translate-y-[110%]": !show }
             )}
           >
             frontend
@@ -47,7 +47,7 @@ export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
             className={classNames(
               "inline-block text-4xl leading-none",
               `lg:text-[4rem] ${transitionClass}`,
-              { "lg:translate-y-[110%]": !isHalfway }
+              { "lg:translate-y-[110%]": !show }
             )}
           >
             development,
@@ -56,7 +56,7 @@ export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
         <span className="inline-block overflow-hidden mb-4">
           <span
             className={classNames("inline-block font-medium", transitionClass, {
-              "lg:translate-y-[110%]": !isHalfway,
+              "lg:translate-y-[110%]": !show,
             })}
           >
             building modern applications that are
@@ -68,7 +68,7 @@ export default function HeroTextPartTwo({ isHalfway }: HeroTextPartTwoProps) {
               "inline-block text-[2rem] leading-normal",
               transitionClass,
               {
-                "lg:translate-y-[110%]": !isHalfway,
+                "lg:translate-y-[110%]": !show,
               }
             )}
           >
