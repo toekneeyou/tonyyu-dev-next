@@ -68,7 +68,7 @@ export default function HeroSection() {
       id={HERO}
       className={classNames(
         "pt-32 pb-24 bg-app-black",
-        "lg:py-0 lg:grid lg:grid-cols-2 lg:h-[300vh] lg:landscape:pb-32",
+        "lg:py-0 lg:grid lg:grid-cols-2 lg:h-[300vh]",
         "lg:portrait:grid-cols-1"
       )}
     >

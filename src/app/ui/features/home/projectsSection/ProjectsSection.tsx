@@ -18,7 +18,7 @@ export default function Projects() {
         id={PROJECTS}
         className={classNames("pb-24", "lg:pb-0 lg:relative lg:z-10")}
       >
-        <div className={classNames("centered py-24", "lg:py-32")}>
+        <div className={classNames("centered py-24", "lg:py-32 lg:border-t-[8rem] lg:border-app-black")}>
           <H1>PROJECTS</H1>
         </div>
 
