@@ -60,7 +60,7 @@ export default function HeroSection() {
         window.removeEventListener("scroll", handleScroll);
       };
     }
-  }, [isNotMobile]);
+  }, [isNotMobile, heroRef]);
 
   return (
     <section

@@ -48,7 +48,7 @@ export default function ViewportContextProvider({
         observer.disconnect();
       };
     }
-  }, []);
+  }, [bodyRef]);
 
   return (
     <ViewportContext.Provider value={dimensions}>

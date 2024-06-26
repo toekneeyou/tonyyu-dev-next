@@ -61,7 +61,7 @@ export default function Header({}: HeaderProps) {
       header.classList.remove("translate-y-[-100%]");
       header.classList.add("translate-y-0");
     }
-  }, [pathname]);
+  }, [pathname, headerRef]);
 
   return (
     <header

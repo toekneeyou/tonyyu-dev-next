@@ -52,7 +52,7 @@ export default function Stars({
     } else {
       return [];
     }
-  }, [isLargeViewport]);
+  }, [isLargeViewport, numberOfStars]);
 
   if (w == undefined || w < mdViewport) return null;
 
