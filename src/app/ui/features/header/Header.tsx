@@ -10,7 +10,7 @@ import { classNames } from "@/app/lib/utils";
 import { josefin } from "../../fonts";
 import IconButton from "../../components/IconButton";
 import {
-  useSideMenuAPIContext,
+  useSideMenuContextAPI,
   useSideMenuContext,
 } from "../../contexts/SideMenuContext";
 import { useViewportContext } from "../../contexts/ViewportContext";
@@ -23,7 +23,7 @@ interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
   const { isSideMenuOpen } = useSideMenuContext();
-  const { toggleSideMenu } = useSideMenuAPIContext();
+  const { toggleSideMenu } = useSideMenuContextAPI();
   const { w } = useViewportContext();
   const { headerRef, projectRef } = useRefContext();
   const pathname = usePathname();

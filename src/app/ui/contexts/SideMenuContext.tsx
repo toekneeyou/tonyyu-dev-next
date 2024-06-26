@@ -9,8 +9,9 @@ import {
   useMemo,
   useReducer,
 } from "react";
+import { useRefContext } from "./RefContext";
 
-interface SideMenuState {
+interface SideMenuValue {
   isSideMenuOpen: boolean;
 }
 interface SideMenuAPI {
@@ -18,8 +19,8 @@ interface SideMenuAPI {
   setIsSideMenuOpen: (arg: boolean) => void;
 }
 
-const SideMenuStateContext = createContext<SideMenuState | null>(null);
-const SideMenuAPIContext = createContext<SideMenuAPI | null>(null);
+const SideMenuContext = createContext<SideMenuValue | null>(null);
+const SideMenuContextAPI = createContext<SideMenuAPI | null>(null);
 
 const TOGGLE_SIDE_MENU = "toggleSideMenu";
 const SET_IS_SIDE_MENU_OPEN = "setIsSideMenuOpen";
@@ -28,9 +29,9 @@ type SideMenuActions =
   | { type: typeof SET_IS_SIDE_MENU_OPEN; payload: boolean };
 
 const reducer = (
-  state: SideMenuState,
+  state: SideMenuValue,
   action: SideMenuActions
-): SideMenuState => {
+): SideMenuValue => {
   switch (action.type) {
     case "toggleSideMenu":
       return { isSideMenuOpen: !state.isSideMenuOpen };
@@ -49,6 +50,7 @@ export default function SideMenuContextProvider({
   const [state, dispatch] = useReducer(reducer, {
     isSideMenuOpen: false,
   });
+  const { bodyRef } = useRefContext();
 
   const sideMenuAPI: SideMenuAPI = useMemo(() => {
     return {
@@ -59,61 +61,65 @@ export default function SideMenuContextProvider({
   }, []);
 
   useEffect(() => {
-    // whenever viewport is too big, close sidemenu and disconnect resize observer
-    const handleResize = (entries: ResizeObserverEntry[]) => {
-      entries.forEach((e) => {
-        if (
-          e.target.getBoundingClientRect().width >= mdViewport &&
-          state.isSideMenuOpen
-        ) {
-          sideMenuAPI.setIsSideMenuOpen(false);
-          resizeObserver.disconnect();
+    const body = bodyRef.current;
+
+    if (body) {
+      // whenever viewport is too big, close sidemenu and disconnect resize observer
+      const handleResize = (entries: ResizeObserverEntry[]) => {
+        entries.forEach((e) => {
+          if (
+            e.target.getBoundingClientRect().width >= mdViewport &&
+            state.isSideMenuOpen
+          ) {
+            sideMenuAPI.setIsSideMenuOpen(false);
+            resizeObserver.disconnect();
+          }
+        });
+      };
+
+      // handle body scroll here instead of using state in page.tsx to prevent unnecessary rerenders
+      const handleBodyScroll = () => {
+        if (state.isSideMenuOpen) {
+          body.classList.remove("overflow-y-scroll");
+          body.classList.add("overflow-y-hidden");
+        } else {
+          body.classList.remove("overflow-y-hidden");
+          body.classList.add("overflow-y-scroll");
         }
-      });
-    };
+      };
 
-    // handle body scroll here instead of using state in page.tsx to prevent unnecessary rerenders
-    const handleBodyScroll = () => {
-      if (state.isSideMenuOpen) {
-        document.body.classList.remove("overflow-y-scroll");
-        document.body.classList.add("overflow-y-hidden");
-      } else {
-        document.body.classList.remove("overflow-y-hidden");
-        document.body.classList.add("overflow-y-scroll");
-      }
-    };
+      handleBodyScroll();
+      const resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(body);
 
-    handleBodyScroll();
-    const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(document.querySelector("body")!);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
   }, [state.isSideMenuOpen, sideMenuAPI]);
 
   return (
-    <SideMenuStateContext.Provider value={state}>
-      <SideMenuAPIContext.Provider value={sideMenuAPI}>
+    <SideMenuContext.Provider value={state}>
+      <SideMenuContextAPI.Provider value={sideMenuAPI}>
         {children}
-      </SideMenuAPIContext.Provider>
-    </SideMenuStateContext.Provider>
+      </SideMenuContextAPI.Provider>
+    </SideMenuContext.Provider>
   );
 }
 
-export function useSideMenuState() {
-  const sideMenuState = useContext(SideMenuStateContext);
+export function useSideMenuContext() {
+  const sideMenuState = useContext(SideMenuContext);
   if (!sideMenuState) {
-    throw new Error("useSideMenuState must be used within a Provider");
+    throw new Error("useSideMenuContext must be used within a Provider");
   } else {
     return sideMenuState;
   }
 }
 
-export function useSideMenuAPI() {
-  const sideMenuActions = useContext(SideMenuAPIContext);
+export function useSideMenuContextAPI() {
+  const sideMenuActions = useContext(SideMenuContextAPI);
   if (!sideMenuActions) {
-    throw new Error("useSideMenuAPI must be used within a Provider");
+    throw new Error("useSideMenuContextAPI must be used within a Provider");
   } else {
     return sideMenuActions;
   }
