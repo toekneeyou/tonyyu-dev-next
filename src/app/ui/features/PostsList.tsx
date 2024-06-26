@@ -22,7 +22,7 @@ export default function PostsList({ posts }: PostsListProps) {
               className="bg-turquoise min-h-4 min-w-4 rounded-full mr-4"
             />
 
-            <Link href={href}>
+            <Link href={href} className="hover:text-turquoise transition-colors">
               <h3 className="font-bold lg:text-2xl">{title}</h3>
               <p className="capitalize text-app-fog text-[12px]">
                 {dateString} - {p.categories.join(", ")}
