@@ -10,9 +10,10 @@ import {
 } from "react";
 
 interface RefContextValue {
+  headerRef: RefObject<HTMLElement>;
   bodyRef: RefObject<HTMLBodyElement>;
   heroRef: RefObject<HTMLElement>;
-  headerRef: RefObject<HTMLElement>;
+  projectRef: RefObject<HTMLElement>;
 }
 
 const RefContext = createContext<RefContextValue | null>(null);
@@ -27,12 +28,14 @@ export default function RefContextProvider({
   const bodyRef = useRef<HTMLBodyElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const projectRef = useRef<HTMLElement>(null);
 
   const value = useMemo(() => {
     return {
       bodyRef,
       heroRef,
       headerRef,
+      projectRef,
     };
   }, []);
 
