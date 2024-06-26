@@ -2,38 +2,46 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
 
 import { classNames } from "@/app/lib/utils";
-import { josefin } from "../fonts";
-import IconButton from "../components/IconButton";
-import { useSideMenuAPI, useSideMenuState } from "../contexts/SideMenuContext";
-import { useViewportContext } from "../contexts/ViewportContext";
-import { lgViewport, pathnames } from "@/app/lib/constants";
-import { HERO } from "@/app/lib/id";
+import { josefin } from "../../fonts";
+import IconButton from "../../components/IconButton";
+import {
+  useSideMenuAPIContext,
+  useSideMenuContext,
+} from "../../contexts/SideMenuContext";
+import { useViewportContext } from "../../contexts/ViewportContext";
+import { lgViewport } from "@/app/lib/constants";
+import { useRefContext } from "../../contexts/RefContext";
+
+const HeaderNav = dynamic(() => import("./HeaderNav"));
 
 interface HeaderProps {}
 
 export default function Header({}: HeaderProps) {
-  const { isSideMenuOpen } = useSideMenuState();
-  const { toggleSideMenu } = useSideMenuAPI();
-  const pathname = usePathname();
-  const headerRef = useRef<HTMLElement>(null);
+  const { isSideMenuOpen } = useSideMenuContext();
+  const { toggleSideMenu } = useSideMenuAPIContext();
   const { w } = useViewportContext();
+  const { headerRef, projectRef } = useRefContext();
+  const pathname = usePathname();
+
   const isMobile = w !== undefined && w < lgViewport;
   const isNotMobile = w !== undefined && w >= lgViewport;
 
   useEffect(() => {
     const isHome = pathname === "/";
+    const project = projectRef.current;
 
-    if (isHome) {
+    if (isHome && project) {
       const header = headerRef.current!;
 
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.intersectionRatio < 0.5) {
+            if (entry.isIntersecting || entry.boundingClientRect.top <= 0) {
               header.classList.remove("translate-y-[-100%]");
               header.classList.add("translate-y-0");
             } else {
@@ -45,7 +53,8 @@ export default function Header({}: HeaderProps) {
         { threshold: [0, 0.25, 0.5, 0.75, 1] }
       );
 
-      observer.observe(document.getElementById(HERO)!);
+      observer.observe(project);
+
       return () => {
         observer.disconnect();
       };
@@ -70,24 +79,7 @@ export default function Header({}: HeaderProps) {
       >
         <Link href="/">TONY YU</Link>
       </div>
-      {isNotMobile && (
-        <nav>
-          <ul className="flex space-x-4">
-            {pathnames.map((pn) => {
-              return (
-                <li key={pn.name}>
-                  <Link
-                    className="text-xl font-bold hover:text-turquoise transition-colors"
-                    href={pn.path}
-                  >
-                    {pn.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      )}
+      {isNotMobile && <HeaderNav />}
       {isMobile && (
         <div>
           <IconButton
